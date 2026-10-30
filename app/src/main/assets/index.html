@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#10121b">
+<title>Daily Tasks</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
+:root{--bg:#0d0f17;--panel:#151824;--panel2:#1b1f2e;--line:#292e40;--text:#f4f5fb;--muted:#9299b1;--purple:#9b8cff;--cyan:#66e3d0;--green:#65d9a0;--red:#ff7c91;--orange:#ffbf69}
+*{box-sizing:border-box}
+/* NEXORA custom scrollbar + matching input styling */
+*{scrollbar-width:thin;scrollbar-color:#8876e8 #111522}
+*::-webkit-scrollbar{width:10px;height:10px}
+*::-webkit-scrollbar-track{background:#111522;border:1px solid #292e40;border-radius:999px}
+*::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#a99aff,#7160cf);border:2px solid #111522;border-radius:999px}
+*::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#b9adff,#66e3d0)}
+/* أزرار أعلى وأسفل شريط التمرير، لو المتصفح يعرضها */
+*::-webkit-scrollbar-button{display:block;width:10px;height:10px;background:#19182a;border:1px solid #34314d}
+*::-webkit-scrollbar-button:vertical:decrement{background:linear-gradient(135deg,#a99aff,#7160cf);border-radius:5px 5px 2px 2px}
+*::-webkit-scrollbar-button:vertical:increment{background:linear-gradient(135deg,#7160cf,#66e3d0);border-radius:2px 2px 5px 5px}
+*::-webkit-scrollbar-button:horizontal:decrement{background:linear-gradient(135deg,#a99aff,#7160cf);border-radius:5px 2px 2px 5px}
+*::-webkit-scrollbar-button:horizontal:increment{background:linear-gradient(135deg,#7160cf,#66e3d0);border-radius:2px 5px 5px 2px}
+/* Override native white scrollbar arrows with NEXORA-colored arrow artwork. */
+*::-webkit-scrollbar-button{-webkit-appearance:none;appearance:none;background-repeat:no-repeat;background-position:center;background-size:8px 8px;box-shadow:inset 0 0 0 1px #34314d}
+*::-webkit-scrollbar-button:vertical:decrement{background-color:#19182a;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 8L6 4l4 4' fill='none' stroke='%23b9adff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");border-radius:5px 5px 2px 2px}
+*::-webkit-scrollbar-button:vertical:increment{background-color:#19182a;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' fill='none' stroke='%2366e3d0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");border-radius:2px 2px 5px 5px}
+*::-webkit-scrollbar-button:horizontal:decrement{background-color:#19182a;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M8 2L4 6l4 4' fill='none' stroke='%23b9adff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");border-radius:5px 2px 2px 5px}
+*::-webkit-scrollbar-button:horizontal:increment{background-color:#19182a;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M4 2l4 4-4 4' fill='none' stroke='%2366e3d0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");border-radius:2px 5px 5px 2px}
+*::-webkit-scrollbar-corner{background:#111522}
+input,select,textarea{caret-color:var(--cyan);accent-color:var(--purple);transition:border-color .2s,box-shadow .2s,background-color .2s}
+input:hover,textarea:hover{border-color:#514875;background:#121624}
+input:focus,textarea:focus{border-color:var(--purple);background:#151827;box-shadow:0 0 0 3px #9b8cff20;outline:none}
+input::selection,textarea::selection{background:#7668c9;color:#fff}
+body{margin:0;min-height:100vh;color:var(--text);background:radial-gradient(ellipse at 8% 0%,#252044 0,transparent 36%),radial-gradient(ellipse at 100% 30%,#123036 0,transparent 27%),var(--bg);font-family:'Cairo',Tahoma,sans-serif}button,input,select{font:inherit}button{cursor:pointer;transition:.2s}
+/* قوائم التصنيف والأولوية: سهم المتصفح الأصلي موجود، مع ألوان وحدود متناسقة */
+select{appearance:auto;-webkit-appearance:menulist;cursor:pointer;padding:12px 13px;color:var(--text);color-scheme:dark;background:#121522;border:1px solid #34314d;border-radius:13px;transition:border-color .2s,box-shadow .2s,background-color .2s}
+select:hover{border-color:#62578e;background-color:#19182a}
+select:focus,select:focus-visible{border-color:var(--purple);background-color:#19182a;box-shadow:0 0 0 3px #9b8cff20;outline:none}
+select option{background:#191c2a;color:#f4f5fb}button:hover{filter:brightness(1.1);transform:translateY(-1px)}button:disabled{opacity:.45;cursor:not-allowed;transform:none}.wrap{max-width:1180px;margin:auto;padding:28px 20px 60px}header{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:28px}.brand{display:flex;align-items:center;gap:12px}.logo{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,var(--purple),#6b59cf);font-size:25px;box-shadow:0 8px 30px #8c78ff35}.brand h1{font-size:22px;letter-spacing:1px;margin:0}.brand p{font-size:12px;color:var(--muted);margin:0}.date{color:var(--muted);font-size:13px;text-align:left}.hero{padding:28px;border:1px solid var(--line);border-radius:26px;background:linear-gradient(120deg,#1b1c30ef,#151c28ed);display:grid;grid-template-columns:1.5fr 1fr;gap:20px;align-items:center;box-shadow:0 20px 70px #0002}.eyebrow{color:var(--cyan);font-size:12px;font-weight:700;letter-spacing:1px}.hero h2{font-size:clamp(24px,4vw,36px);line-height:1.5;margin:8px 0}.hero p{color:var(--muted);margin:0;font-size:14px}.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.stat{padding:16px;border-radius:17px;background:#ffffff06;border:1px solid #ffffff0c}.stat span{display:block;color:var(--muted);font-size:12px}.stat strong{display:block;font-size:25px;margin-top:5px}.progress-track{height:7px;background:#ffffff10;border-radius:20px;overflow:hidden;margin-top:18px}.progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--purple),var(--cyan));transition:width .3s}.layout{display:grid;grid-template-columns:350px 1fr;gap:20px;margin-top:22px;align-items:start}.panel{background:#151824ed;border:1px solid var(--line);border-radius:23px;padding:22px;min-width:0}.panel h3{margin:0 0 5px;font-size:18px}.sub{color:var(--muted);font-size:12px;margin:0 0 20px}.field{margin-bottom:15px}.field label{display:block;font-size:12px;color:#c5c9d8;margin-bottom:7px}input,select{width:100%;min-width:0;padding:12px 13px;border-radius:12px;border:1px solid var(--line);background:#0f121c;color:var(--text);outline:none}
+/* NEXORA custom date picker trigger */
+.custom-date-picker{position:relative;display:flex;align-items:stretch;gap:0;border-radius:13px;background:linear-gradient(#0f121c,#0f121c) padding-box,linear-gradient(120deg,#b9adff 0%,#806ce0 48%,#9b8cff 76%,#66e3d0 100%) border-box;border:1px solid transparent;overflow:hidden;transition:box-shadow .18s ease}
+.custom-date-picker:focus-within{box-shadow:0 0 0 3px #9b8cff24,0 0 15px #806ce02b}
+.custom-date-picker input{border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;min-width:0;flex:1;cursor:pointer;padding:12px 13px}
+.custom-date-picker button{flex:0 0 44px;border:0;border-right:1px solid #3b345c;background:linear-gradient(145deg,#27213f,#171a28);color:#c9bfff;font-size:19px;display:grid;place-items:center;transition:background .18s,color .18s,box-shadow .18s}
+.custom-date-picker button:hover{background:linear-gradient(135deg,#59479e,#302852);color:#fff;transform:none;filter:none}
+.custom-date-picker button:focus-visible{outline:2px solid #b9adff;outline-offset:-3px}
+/* NEXORA date field: rounded corners + subtle purple gradient border */
+#editDate{
+  color-scheme:dark;accent-color:#9b8cff;color:var(--text);
+  border:1px solid transparent;border-radius:12px;
+  background:linear-gradient(#0f121c,#0f121c) padding-box,
+             linear-gradient(135deg,#b9adff 0%,#806ce0 52%,#9b8cff 78%,#66e3d0 100%) border-box;
+  transition:box-shadow .18s ease,background .18s ease;
+}
+#editDate:hover{box-shadow:0 0 0 2px #9b8cff12}
+#editDate:focus{border-color:transparent;box-shadow:0 0 0 3px #9b8cff24,0 0 14px #806ce02b;outline:none}
+#editDate::-webkit-calendar-picker-indicator{filter:invert(.82) sepia(.18) saturate(1.3) hue-rotate(210deg);opacity:.95;cursor:pointer;transition:filter .18s,opacity .18s}
+#editDate::-webkit-calendar-picker-indicator:hover{filter:invert(.9) sepia(.28) saturate(1.8) hue-rotate(215deg);opacity:1}input:focus,select:focus{border-color:var(--purple);box-shadow:0 0 0 3px #9b8cff18}input::placeholder{color:#666d83}.duration{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.duration input{text-align:center}.btn{border:0;border-radius:12px;padding:11px 15px;font-weight:700;background:var(--purple);color:#11121a}.btn.full{width:100%;margin-top:4px}.btn.secondary{background:#292e40;color:var(--text)}.btn.green{background:var(--green);color:#092018}.btn.red{background:#4b2632;color:#ffb0bd}.btn.pause-action{background:#493a25;color:#ffd28a;border:1px solid #8c6a35}.btn.pause-action:hover{background:#59472c;filter:brightness(1.06)}.btn.defer-action{background:#202f49;color:#c7d9f5;border:1px solid #202f49;box-shadow:inset 0 0 0 1px #78a9ff0a}.btn.defer-action:hover{background:#202f49;border-color:#202f49;box-shadow:inset 0 0 0 1px #78a9ff0a;filter:brightness(1.1);transform:translateY(-1px)}.btn.small{font-size:12px;padding:8px 11px}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}.toolbar-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;min-width:0}.filters{display:flex;gap:6px;flex-wrap:wrap}.filter{border:1px solid var(--line);background:transparent;color:var(--muted);padding:7px 11px;border-radius:10px;font-size:12px}.filter.active{background:#9b8cff1c;border-color:#9b8cff70;color:#d9d1ff}.task-list{display:grid;gap:11px}.task{background:var(--panel2);border:1px solid var(--line);border-radius:17px;padding:12px 16px 16px;display:grid;grid-template-columns:minmax(0,1fr);gap:13px;align-items:start}.task.running{border-color:#9b8cff75;box-shadow:inset 3px 0 var(--purple)}.task.done{opacity:.7}.task-top{display:flex;align-items:flex-start;min-width:0;direction:rtl}.dot{width:9px;height:9px;border-radius:50%;margin:6px 0 0 9px;flex:0 0 9px}.task h4{margin:0;font-size:15px;overflow-wrap:anywhere}.task-title-line{display:flex;align-items:flex-start;gap:0;min-width:0;direction:rtl;text-align:right;flex:1}.task-title-line h4{flex:1;min-width:0}.task-edit-btn{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;height:auto;min-height:0;padding:8px 11px;border:0;background:#343a50;color:#c9c4e7;border-radius:12px;line-height:normal;font-size:12px;font-weight:700;cursor:pointer;transition:background .15s,transform .15s,filter .15s;white-space:nowrap;box-sizing:border-box;margin:0;vertical-align:top}.task-edit-btn:hover{background:#414862;border-color:transparent;transform:translateY(-1px);filter:none}.edit-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}.edit-grid .field{min-width:0}.edit-grid .field:first-child{grid-column:1/-1}.edit-grid .edit-duration-field{grid-column:1/-1}.edit-grid #editCustomCategoryWrap{grid-column:1/-1}.edit-grid #editCustomCategory{width:270px;max-width:100%;box-sizing:border-box}.edit-duration-field .duration{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.edit-grid input,.edit-grid select{box-sizing:border-box} .edit-dialog{position:relative;max-height:90vh;overflow-y:auto;border-radius:24px;scrollbar-width:none;-ms-overflow-style:none;padding-left:27px}
+.edit-dialog::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+.edit-custom-scrollbar{position:fixed;z-index:15;left:10px;top:30px;height:calc(90vh - 60px);width:14px;display:flex;flex-direction:column;align-items:center;gap:5px;opacity:.78;transition:opacity .2s;user-select:none;touch-action:none}
+.edit-custom-scrollbar:hover,.edit-custom-scrollbar.dragging{opacity:1}
+@media(max-width:600px){.edit-custom-scrollbar{opacity:.58}.edit-custom-scrollbar:hover,.edit-custom-scrollbar.dragging{opacity:1}}
+/* Match the main page scrollbar's subtle hover/press feedback */
+.edit-custom-scrollbar .edit-scroll-arrow{
+ width:14px;height:17px;display:grid;place-items:center;border-radius:6px;
+ background:#211c34;border:1px solid #3d355b;color:#8876d2;font-size:9px;line-height:1;padding:0;
+ box-shadow:0 1px 2px rgba(0,0,0,.12);cursor:default;flex:0 0 17px;outline:none;filter:none;transform:none;
+ transition:background-color .16s ease,border-color .16s ease,color .16s ease,box-shadow .16s ease;
+}
+.edit-custom-scrollbar .edit-scroll-arrow:last-child{color:#548e70}
+.edit-custom-scrollbar .edit-scroll-arrow:hover{background:#2b2442;border-color:#554975;color:#a99be9;box-shadow:0 1px 3px rgba(0,0,0,.16)}
+.edit-custom-scrollbar .edit-scroll-arrow:last-child:hover{color:#78b891}
+.edit-custom-scrollbar .edit-scroll-arrow:active{background:#393052;border-color:#7868a5;color:#d0c8ff;outline:1px solid #71659e;outline-offset:1px;box-shadow:inset 0 1px 1px rgba(255,255,255,.08),0 1px 2px rgba(0,0,0,.12)}
+.edit-custom-scrollbar .edit-scroll-arrow:last-child:active{color:#a4dfb8;outline-color:#5e9474}
+.edit-custom-scrollbar .edit-scroll-arrow:focus:not(:hover):not(:active),.edit-custom-scrollbar .edit-scroll-arrow:focus-visible:not(:hover):not(:active){background:#211c34;border-color:#3d355b;color:#8876d2;outline:none;box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.edit-custom-scrollbar .edit-scroll-arrow:last-child:focus:not(:hover):not(:active),.edit-custom-scrollbar .edit-scroll-arrow:last-child:focus-visible:not(:hover):not(:active){color:#548e70}
+.edit-custom-scrollbar-track{position:relative;flex:1;width:9px;min-height:30px;border:1px solid #3d355b;border-radius:99px;background:#111522ef;overflow:hidden;cursor:default;transition:background .16s,border-color .16s,box-shadow .16s}
+.edit-custom-scrollbar-track:hover{background:#19152a;border-color:#7663d6}
+.edit-custom-scrollbar-thumb{position:absolute;left:1px;top:0;width:5px;min-height:28px;box-sizing:border-box;border-radius:99px;background:linear-gradient(180deg,#c9c0ff,#9b8cff 55%,#7663d6);box-shadow:0 0 10px #9b8cff45;cursor:default!important;transition:box-shadow .16s,filter .16s}
+.edit-custom-scrollbar-thumb:hover{box-shadow:0 0 14px #b9adff90;filter:brightness(1.08)}
+.edit-custom-scrollbar-thumb:active{box-shadow:0 0 18px #b9adffb0,inset 0 0 5px #fff5;filter:brightness(1.16)}@media(max-width:420px){.edit-grid{grid-template-columns:1fr}.edit-grid .field:first-child{grid-column:auto}}.task.done h4{text-decoration:line-through;color:var(--muted)}.task-info-row{display:flex;direction:ltr;align-items:center;justify-content:space-between;gap:12px;min-width:0;position:relative;top:-6px}.meta{display:flex;flex-wrap:wrap;gap:7px;margin:0;direction:rtl;justify-content:flex-start;text-align:right;align-items:center;flex:1;min-width:0}.task-actions{display:flex;direction:ltr;align-items:center;gap:7px;flex-wrap:wrap;justify-content:flex-start;padding:0;margin:0;align-self:start;flex:0 1 auto;max-width:52%}.pill{padding:4px 8px;border-radius:8px;background:#ffffff09;color:var(--muted);font-size:11px}.pill.high{color:#ffabb9;background:#ff7c9115}.pill.medium{color:var(--orange);background:#ffbf6912}.pill.low{color:var(--cyan);background:#66e3d012}.task-note-row{display:flex;direction:ltr;align-items:stretch;justify-content:space-between;gap:8px;min-width:0;margin-top:0}.task-note-button{flex:0 0 auto;min-width:90px;align-self:stretch;background:#202f49!important;color:#c7d9f5!important;border:1px solid #202f49;box-shadow:inset 0 0 0 1px #78a9ff0a}.task-note-button:hover{background:#202f49!important;border-color:#202f49;box-shadow:inset 0 0 0 1px #78a9ff0a;filter:brightness(1.1);transform:translateY(-1px)}.task-note-field{flex:0 1 360px;width:fit-content;max-width:min(360px,calc(100% - 100px));min-width:0;margin:0 0 0 auto;padding:9px 12px;border:1px solid #9b8cff30;background:#9b8cff0b;border-radius:10px;color:#c9c4e7;font-size:12px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere;direction:ltr;text-align:right;display:flex;align-items:center}.task-note-field.empty-note{color:#747b92;border-style:dashed}.task-note-field .note-preview-text{flex:1;min-width:0;direction:rtl;text-align:right}.task-note-field .note-preview-delete{margin-left:8px}.empty{text-align:center;padding:40px 12px;color:var(--muted);border:1px dashed var(--line);border-radius:17px}.empty .symbol{font-size:32px;margin-bottom:8px}.focus-card{border:1px solid #9b8cff55;background:linear-gradient(135deg,#24203c,#171d2b);border-radius:20px;padding:22px;margin-bottom:20px}.focus-head{display:flex;justify-content:space-between;gap:12px;align-items:center}.focus-head h3{margin:0;overflow-wrap:anywhere}.live{font-size:11px;color:var(--green);white-space:nowrap}.clock{text-align:center;font-size:clamp(36px,7vw,60px);font-weight:800;letter-spacing:2px;direction:ltr;margin:14px 0 4px;font-variant-numeric:tabular-nums}.clock-label{text-align:center;color:var(--muted);font-size:12px}.focus-track{height:6px;background:#ffffff12;border-radius:10px;margin:17px 0;overflow:hidden}.focus-track div{height:100%;background:linear-gradient(90deg,var(--purple),var(--cyan));width:0}.focus-actions{display:flex;justify-content:center;gap:9px;flex-wrap:wrap}.modal{position:fixed;inset:0;background:#05060bd9;backdrop-filter:blur(9px);display:none;align-items:center;justify-content:center;padding:18px;z-index:10}.modal.show{display:flex}.dialog{width:min(440px,100%);background:#191c2a;border:1px solid #3a4058;border-radius:24px;padding:25px;box-shadow:0 25px 100px #0008}.dialog-icon{font-size:35px}.dialog h2{margin:8px 0;font-size:23px}.dialog p{color:var(--muted);font-size:13px;line-height:1.8}.dialog-actions{display:grid;gap:9px;margin-top:18px}.note-textarea{width:100%;min-height:140px;resize:vertical;padding:13px;border-radius:12px;border:1px solid var(--line);background:#0f121c;color:var(--text);font:inherit;line-height:1.7;box-sizing:border-box}.note-editor{display:flex;align-items:flex-start;gap:9px;position:relative}.note-editor .note-textarea{flex:1;min-width:0;padding-left:31px;padding-right:13px;scrollbar-width:none;-ms-overflow-style:none}.note-editor .note-textarea::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+.note-custom-scrollbar{position:absolute;z-index:2;left:8px;right:auto;top:8px;bottom:8px;width:14px;display:flex;flex-direction:column;align-items:center;gap:5px;opacity:.78;transition:opacity .2s;user-select:none;touch-action:none}.note-custom-scrollbar:hover,.note-custom-scrollbar.dragging{opacity:1}
+.note-custom-scrollbar .edit-scroll-arrow{width:14px;height:17px;display:grid;place-items:center;border-radius:6px;background:#211c34;border:1px solid #3d355b;color:#8876d2;font-size:9px;line-height:1;padding:0;box-shadow:0 1px 2px rgba(0,0,0,.12);cursor:default;flex:0 0 17px;outline:none;filter:none;transform:none;transition:background-color .16s ease,border-color .16s ease,color .16s ease,box-shadow .16s ease}
+.note-custom-scrollbar .edit-scroll-arrow:last-child{color:#548e70}.note-custom-scrollbar .edit-scroll-arrow:hover{background:#2b2442;border-color:#554975;color:#a99be9;box-shadow:0 1px 3px rgba(0,0,0,.16)}.note-custom-scrollbar .edit-scroll-arrow:last-child:hover{color:#78b891}
+.note-custom-scrollbar .edit-scroll-arrow:active{background:#393052;border-color:#7868a5;color:#d0c8ff;outline:1px solid #71659e;outline-offset:1px;box-shadow:inset 0 1px 1px rgba(255,255,255,.08),0 1px 2px rgba(0,0,0,.12)}.note-custom-scrollbar .edit-scroll-arrow:last-child:active{color:#a4dfb8;outline-color:#5e9474}
+.note-custom-scrollbar .edit-scroll-arrow:focus:not(:hover):not(:active),.note-custom-scrollbar .edit-scroll-arrow:focus-visible:not(:hover):not(:active){background:#211c34;border-color:#3d355b;color:#8876d2;outline:none;box-shadow:0 1px 2px rgba(0,0,0,.12)}.note-custom-scrollbar .edit-scroll-arrow:last-child:focus:not(:hover):not(:active),.note-custom-scrollbar .edit-scroll-arrow:last-child:focus-visible:not(:hover):not(:active){color:#548e70}
+.note-custom-scrollbar .edit-custom-scrollbar-track{position:relative;flex:1;width:9px;min-height:30px;border:1px solid #302b49;border-radius:99px;background:#111522ef;overflow:hidden;cursor:default;transition:background .16s,border-color .16s,box-shadow .16s}.note-custom-scrollbar .edit-custom-scrollbar-track:hover{background:#111522ef;border-color:#302b49;box-shadow:none}
+.note-custom-scrollbar .edit-custom-scrollbar-thumb{position:absolute;left:1px;top:0;width:5px;min-height:28px;box-sizing:border-box;border-radius:99px;background:linear-gradient(180deg,#b9adff,#806ce0 55%,#66e3d0);box-shadow:0 0 10px #9b8cff45;cursor:default!important;transition:box-shadow .16s,filter .16s}.note-custom-scrollbar .edit-custom-scrollbar-thumb:hover{box-shadow:0 0 14px #b9adff90;filter:brightness(1.08)}.note-custom-scrollbar .edit-custom-scrollbar-thumb:active{box-shadow:0 0 14px #b9adff90!important;filter:brightness(1.08)!important}.note-preview-row{display:flex;direction:ltr;align-items:stretch;gap:8px;margin-top:10px}.note-preview{flex:1;min-width:0;margin-top:0;padding:10px 12px;border:1px solid #9b8cff30;background:#9b8cff0b;border-radius:10px;color:#c9c4e7;font-size:12px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere;display:flex;align-items:flex-start;gap:8px;direction:ltr;text-align:right}.note-preview-text{flex:1;min-width:0;direction:rtl;text-align:right;overflow-wrap:anywhere}.note-preview-delete{flex:0 0 auto;align-self:flex-start;padding:6px 8px;min-height:30px;line-height:1.2}.note-textarea::placeholder{color:#666d83}.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#252a3c;border:1px solid var(--line);border-radius:12px;padding:12px 18px;font-size:13px;z-index:30;transition:.25s;max-width:90%;text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}footer{text-align:center;color:#666d83;font-size:11px;margin-top:26px}@media(max-width:800px){.hero{grid-template-columns:1fr}.layout{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.wrap{padding:18px 12px 40px}.panel{padding:17px}header{align-items:flex-start}.date{max-width:130px}}@media(max-width:600px){.task-info-row{flex-direction:column;gap:9px}.task-actions{max-width:100%;width:100%;justify-content:flex-start}.meta{width:100%}}@media(max-width:440px){.toolbar-heading{width:100%}.task{grid-template-columns:1fr}.task-info-row{gap:9px}.task-actions{justify-content:flex-start}.task-note-button{min-width:82px}.task-note-field{flex:1 1 auto;max-width:calc(100% - 90px)}.toolbar{align-items:flex-start;flex-direction:column}.hero{padding:20px}.brand h1{font-size:19px}}
+
+/* قوائم مخصصة بدل قائمة النظام البيضاء: نفس الاختيارات مع تحكم كامل بالألوان والحواف */
+select.native-select-hidden{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;left:0!important;top:0!important;padding:0!important;border:0!important;clip-path:inset(50%)!important;overflow:hidden!important;white-space:nowrap!important}
+.custom-select{position:relative;width:100%;min-width:0}
+.custom-select-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:right;padding:12px 13px;border-radius:13px;border:1px solid #34314d;background:#121522;color:var(--text);font:inherit;min-height:48px}
+.custom-select-trigger:hover{border-color:#62578e;background:#19182a;transform:none;filter:none}
+.custom-select.open .custom-select-trigger,.custom-select-trigger:focus-visible{outline:none;border-color:var(--purple);box-shadow:0 0 0 3px #9b8cff20;background:#19182a}
+.custom-select-arrow{color:var(--purple);font-size:16px;transition:transform .18s;flex-shrink:0}
+.custom-select.open .custom-select-arrow{transform:rotate(180deg)}
+.custom-select-menu{display:none;position:absolute;z-index:50;top:calc(100% + 7px);right:0;left:0;padding:6px;border:1px solid #494064;border-radius:15px;background:#191c2a;box-shadow:0 16px 38px #0009;max-height:230px;overflow:auto}
+/* شريط تمرير القائمة يلتزم بالحواف الدائرية للقائمة نفسها */
+.custom-select-menu{scrollbar-gutter:stable;scrollbar-width:thin;scrollbar-color:#8876e8 transparent;overflow-x:hidden;clip-path:inset(0 round 15px)}
+.custom-select-menu::-webkit-scrollbar{width:8px}
+.custom-select-menu::-webkit-scrollbar-track{background:transparent;border:0;border-radius:15px;margin:7px 0}
+.custom-select-menu::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#a99aff,#7160cf);border:2px solid #191c2a;border-radius:999px}
+.custom-select-menu::-webkit-scrollbar-button{display:none!important;width:0;height:0}
+.custom-select.open .custom-select-menu{display:grid;gap:3px}
+.custom-select-option{width:100%;text-align:right;border:0;border-radius:9px;background:transparent;color:#e9e9f5;padding:10px 11px;font:inherit;font-size:14px;transition:background .15s,color .15s}
+.custom-select-option:hover,.custom-select-option:focus-visible{background:#292640;color:#fff;outline:none;transform:none;filter:none}
+.custom-select-option[aria-selected="true"]{background:#9b8cff24;color:#d9d1ff}
+
+
+/* شريط تمرير مخصص للموقع: أسهم واضحة بلون NEXORA بدل أسهم النظام البيضاء */
+html,body{scrollbar-width:none!important;-ms-overflow-style:none!important}
+html::-webkit-scrollbar,body::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+.nexora-scrollbar{position:fixed;z-index:9999;right:5px;top:12px;bottom:12px;width:18px;display:flex;flex-direction:column;align-items:center;gap:5px;opacity:.78;transition:opacity .2s;user-select:none;touch-action:none}
+.nexora-scrollbar:hover,.nexora-scrollbar.dragging{opacity:1}
+.nexora-scroll-arrow{width:18px;height:20px;display:grid;place-items:center;border:1px solid #49406f;border-radius:6px;background:linear-gradient(135deg,#28213f,#171b2a);color:#b9adff;font-size:11px;line-height:1;padding:0;box-shadow:0 2px 8px #0004}
+.nexora-scroll-arrow:last-child{color:#66e3d0}
+.nexora-scroll-track{position:relative;flex:1;width:12px;min-height:30px;border:1px solid #302b49;border-radius:99px;background:#111522eF;overflow:hidden;cursor:pointer}
+.nexora-scroll-thumb{position:absolute;top:0;left:1px;width:8px;min-height:28px;border-radius:99px;background:linear-gradient(180deg,#b9adff,#806ce0 55%,#66e3d0);box-shadow:0 0 10px #9b8cff45;cursor:default!important}
+@media(max-width:600px){.nexora-scrollbar{right:2px;opacity:.58;width:16px}.nexora-scroll-arrow{width:16px}}
+
+/* الأسهم: hover وfocus وactive أفتح من الحالة العادية بنفس الدرجة */
+.nexora-scroll-arrow{cursor:default!important;transition:background-color .16s,border-color .16s,color .16s;filter:none!important;transform:none!important;outline:none;background:#211c34!important;border-color:#3d355b!important;color:#8876d2!important;box-shadow:none!important}
+.nexora-scroll-arrow:last-child{color:#548e70!important}
+.nexora-scroll-arrow:hover,.nexora-scroll-arrow:focus,.nexora-scroll-arrow:focus-visible,.nexora-scroll-arrow:active{background:#332a50!important;border-color:#66568f!important;color:#b9adff!important;filter:none!important;transform:none!important;box-shadow:none!important;cursor:default!important}
+.nexora-scroll-arrow:last-child:hover,.nexora-scroll-arrow:last-child:focus,.nexora-scroll-arrow:last-child:focus-visible,.nexora-scroll-arrow:last-child:active{color:#8bd0a5!important}
+
+
+/* اجعل حالة التركيز مطابقة تمامًا للـ hover */
+.nexora-scroll-arrow:focus,
+.nexora-scroll-arrow:focus-visible{background:#332a50!important;border-color:#66568f!important;color:#b9adff!important;filter:none!important;transform:none!important;box-shadow:none!important;outline:none!important;cursor:default!important}
+.nexora-scroll-arrow:last-child:focus,
+.nexora-scroll-arrow:last-child:focus-visible{color:#8bd0a5!important}
+
+
+/* توحيد شكل الـ hover مع الـ active تمامًا */
+.nexora-scroll-arrow:hover,
+.nexora-scroll-arrow:active {
+  background: #332a50 !important;
+  border-color: #66568f !important;
+  color: #b9adff !important;
+  filter: none !important;
+  transform: none !important;
+  box-shadow: none !important;
+  cursor: default !important;
+}
+.nexora-scroll-arrow:last-child:hover,
+.nexora-scroll-arrow:last-child:active {
+  color: #8bd0a5 !important;
+}
+
+/* Google-like state progression for custom scrollbar arrows */
+.nexora-scroll-arrow{
+  cursor:default!important;
+  background:linear-gradient(135deg,#211c34,#28223d)!important;
+  border:1px solid #3d355b!important;
+  color:#8876d2!important;
+  box-shadow:0 1px 2px #0002!important;
+  filter:none!important;transform:none!important;outline:none;
+  transition:background .14s ease,border-color .14s ease,box-shadow .14s ease,color .14s ease;
+}
+.nexora-scroll-arrow:last-child{color:#548e70!important}
+/* Hover: a gentle lift in brightness, like Google's restrained controls */
+.nexora-scroll-arrow:hover{
+  background:linear-gradient(135deg,#2c2545,#342b50)!important;
+  border-color:#554975!important;
+  color:#b9adff!important;
+  box-shadow:0 1px 3px #0003,0 0 0 1px #ffffff08!important;
+  cursor:default!important;filter:none!important;transform:none!important;
+}
+.nexora-scroll-arrow:last-child:hover{color:#8bd0a5!important}
+/* Focus keeps the hover color, with a soft visible ring */
+.nexora-scroll-arrow:focus,.nexora-scroll-arrow:focus-visible{
+  background:linear-gradient(135deg,#2c2545,#342b50)!important;
+  border-color:#66568f!important;color:#b9adff!important;
+  outline:1px solid #71659e!important;outline-offset:1px;
+  box-shadow:0 1px 3px #0003!important;cursor:default!important;
+}
+.nexora-scroll-arrow:last-child:focus,.nexora-scroll-arrow:last-child:focus-visible{color:#8bd0a5!important}
+/* Active: still brighter than normal (never darkens on click), just a touch more pronounced */
+.nexora-scroll-arrow:active{
+  background:linear-gradient(135deg,#383054,#40365d)!important;
+  border-color:#7868a5!important;color:#d0c8ff!important;
+  box-shadow:inset 0 1px 1px #ffffff12,0 1px 2px #0002!important;
+  outline:none!important;cursor:default!important;filter:none!important;transform:none!important;
+}
+.nexora-scroll-arrow:last-child:active{color:#a4dfb8!important}
+
+
+
+/* FINAL FIX: Google-like gradual states for the two custom scrollbar arrows */
+.nexora-scrollbar .nexora-scroll-arrow {
+  cursor: default !important;
+  background: #211c34 !important;
+  border: 1px solid #3d355b !important;
+  color: #8876d2 !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,.12) !important;
+  outline: none;
+  filter: none !important;
+  transform: none !important;
+  transition: background-color .16s ease, border-color .16s ease, color .16s ease, box-shadow .16s ease !important;
+}
+.nexora-scrollbar .nexora-scroll-arrow:last-child { color: #548e70 !important; }
+.nexora-scrollbar .nexora-scroll-arrow:hover {
+  background: #2b2442 !important;
+  border-color: #554975 !important;
+  color: #a99be9 !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,.16) !important;
+}
+.nexora-scrollbar .nexora-scroll-arrow:last-child:hover { color: #78b891 !important; }
+.nexora-scrollbar .nexora-scroll-arrow:focus,
+.nexora-scrollbar .nexora-scroll-arrow:focus-visible {
+  background: #2b2442 !important;
+  border-color: #554975 !important;
+  color: #a99be9 !important;
+  outline: 1px solid #71659e !important;
+  outline-offset: 1px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.16) !important;
+}
+.nexora-scrollbar .nexora-scroll-arrow:last-child:focus,
+.nexora-scrollbar .nexora-scroll-arrow:last-child:focus-visible { color: #78b891 !important; }
+.nexora-scrollbar .nexora-scroll-arrow:active {
+  background: #393052 !important;
+  border-color: #7868a5 !important;
+  color: #d0c8ff !important;
+  outline: none !important;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.08), 0 1px 2px rgba(0,0,0,.12) !important;
+}
+.nexora-scrollbar .nexora-scroll-arrow:last-child:active { color: #a4dfb8 !important; }
+
+
+/* FINAL OVERRIDE: remove the separate focus appearance; keep hover and active states */
+.nexora-scrollbar .nexora-scroll-arrow:focus:not(:hover):not(:active),
+.nexora-scrollbar .nexora-scroll-arrow:focus-visible:not(:hover):not(:active) {
+  background: #211c34 !important;
+  border-color: #3d355b !important;
+  color: #8876d2 !important;
+  outline: none !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,.12) !important;
+}
+.nexora-scrollbar .nexora-scroll-arrow:last-child:focus:not(:hover):not(:active),
+.nexora-scrollbar .nexora-scroll-arrow:last-child:focus-visible:not(:hover):not(:active) {
+  color: #548e70 !important;
+}
+
+/* Keep the normal mouse cursor over the custom scrollbar thumb */
+.nexora-scrollbar .nexora-scroll-thumb{cursor:default!important}
+
+/* FINAL FIX: keep the standard pointer over empty scrollbar track space */
+.nexora-scrollbar .nexora-scroll-track{cursor:default!important}
+
+/* After a click, remove persistent focus/edge styling; only hover remains while hovered */
+.nexora-scrollbar .nexora-scroll-arrow:focus,
+.nexora-scrollbar .nexora-scroll-arrow:focus-visible {
+  outline:none!important;
+}
+.nexora-scrollbar .nexora-scroll-arrow:focus:not(:hover):not(:active),
+.nexora-scrollbar .nexora-scroll-arrow:focus-visible:not(:hover):not(:active) {
+  background:#211c34!important;
+  border-color:#3d355b!important;
+  color:#8876d2!important;
+  box-shadow:0 1px 2px rgba(0,0,0,.12)!important;
+}
+.nexora-scrollbar .nexora-scroll-arrow:last-child:focus:not(:hover):not(:active),
+.nexora-scrollbar .nexora-scroll-arrow:last-child:focus-visible:not(:hover):not(:active) {
+  color:#548e70!important;
+}
+.nexora-scrollbar .nexora-scroll-arrow:focus:hover,
+.nexora-scrollbar .nexora-scroll-arrow:focus-visible:hover {
+  background:#2b2442!important;
+  border-color:#554975!important;
+  color:#a99be9!important;
+  box-shadow:0 1px 3px rgba(0,0,0,.16)!important;
+}
+.nexora-scrollbar .nexora-scroll-arrow:last-child:focus:hover,
+.nexora-scrollbar .nexora-scroll-arrow:last-child:focus-visible:hover { color:#78b891!important; }
+
+
+
+/* Restore the edge highlight only while the arrow is actively being pressed.
+   Once the mouse is released, focus does not keep the edge; hover can remain. */
+.nexora-scrollbar .nexora-scroll-arrow:active {
+  outline: 1px solid #71659e !important;
+  outline-offset: 1px;
+  border-color: #7868a5 !important;
+}
+.nexora-scrollbar .nexora-scroll-arrow:last-child:active {
+  outline-color: #5e9474 !important;
+}
+
+/* قوائم مخصصة بدل قائمة النظام البيضاء: نفس الاختيارات مع تحكم كامل بالألوان والحواف */
+select.native-select-hidden{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;left:0!important;top:0!important;padding:0!important;border:0!important;clip-path:inset(50%)!important;overflow:hidden!important;white-space:nowrap!important}
+.custom-select{position:relative;width:100%;min-width:0}
+.custom-select-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:right;padding:12px 13px;border-radius:13px;border:1px solid #34314d;background:#121522;color:var(--text);font:inherit;min-height:48px}
+.custom-select-trigger:hover{border-color:#62578e;background:#19182a;transform:none;filter:none}
+.custom-select.open .custom-select-trigger,.custom-select-trigger:focus-visible{outline:none;border-color:var(--purple);box-shadow:0 0 0 3px #9b8cff20;background:#19182a}
+.custom-select-arrow{color:var(--purple);font-size:16px;transition:transform .18s;flex-shrink:0}
+.custom-select.open .custom-select-arrow{transform:rotate(180deg)}
+.custom-select-menu{display:none;position:absolute;z-index:50;top:calc(100% + 7px);right:0;left:0;padding:6px;border:1px solid #494064;border-radius:15px;background:#191c2a;box-shadow:0 16px 38px #0009;max-height:230px;overflow:auto}
+.custom-select.open .custom-select-menu{display:grid;gap:3px}
+.custom-select-option{width:100%;text-align:right;border:0;border-radius:9px;background:transparent;color:#e9e9f5;padding:10px 11px;font:inherit;font-size:14px;transition:background .15s,color .15s}
+.custom-select-option:hover,.custom-select-option:focus-visible{background:#292640;color:#fff;outline:none;transform:none;filter:none}
+.custom-select-option[aria-selected="true"]{background:#9b8cff24;color:#d9d1ff}
+
+
+
+
+/* Daily planner navigation — additive styling; existing components remain unchanged */
+.day-planner{margin:0 0 18px;padding:16px;background:var(--panel);border:1px solid var(--line);border-radius:18px;min-width:0}
+.day-planner-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:13px;flex-wrap:wrap}
+.day-planner-title{display:flex;align-items:center;gap:9px;min-width:0;flex-wrap:wrap}
+.calendar-shortcut{display:inline-flex;align-items:center;gap:6px;margin-inline-start:5px;padding:6px 10px;border:1px solid #494064;border-radius:10px;background:#211d35;color:#d8d0ff;font:inherit;font-size:12px;white-space:nowrap;transition:background .16s,border-color .16s,transform .16s}
+.calendar-shortcut span{font-size:16px;color:var(--purple);line-height:1}
+.calendar-shortcut:hover{background:#30284b;border-color:#7d6bc6;transform:translateY(-1px)}
+.day-year-label{text-align:center;color:var(--muted);font-size:12px;font-weight:700;letter-spacing:1px;margin-top:9px;padding-top:7px;border-top:1px solid var(--line)}
+.day-planner-title h3{margin:0;font-size:16px}
+.day-planner-date{font-size:12px;color:var(--muted);margin-top:3px}
+.day-planner-actions{display:flex;align-items:center;gap:7px}
+.day-nav-btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:10px;padding:7px 10px;cursor:pointer;font:inherit;font-size:12px;transition:background .16s,border-color .16s}
+.day-nav-btn:hover{background:#29243f;border-color:#61548f}
+.day-strip{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px}
+.day-chip{min-width:0;display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 3px;border:1px solid var(--line);border-radius:12px;background:#11141f;color:var(--muted);cursor:pointer;font:inherit;transition:background .16s,border-color .16s,transform .16s}
+.day-chip:hover{border-color:#6f60a7;background:#201d31}
+.day-chip.selected{background:#6d5ac4;border-color:#9b8cff;color:#fff;box-shadow:0 4px 14px #6d5ac426}
+.day-chip .day-name{font-size:11px;white-space:nowrap}
+.day-chip .day-number{font-size:17px;font-weight:800;line-height:1.2}
+.day-chip .day-count{font-size:10px;opacity:.85;white-space:nowrap}
+.day-chip.is-today:not(.selected){border-color:#675a99;color:#c5baff}
+.day-target-hint{font-size:11px;color:var(--purple);margin-top:8px;line-height:1.6}
+@media(max-width:560px){.day-planner-title{gap:7px}.calendar-shortcut{margin-inline-start:30px}.day-planner{padding:12px}.day-strip{gap:4px}.day-chip{padding:9px 1px;border-radius:9px}.day-chip .day-name{font-size:10px}.day-chip .day-number{font-size:15px}.day-chip .day-count{font-size:9px}.day-planner-head{align-items:flex-start}.day-nav-btn{padding:7px 8px}}
+
+
+/* The shared custom calendar must sit above the edit-task dialog. */
+#calendarModal{z-index:30}
+/* Compact centered calendar picker */
+.calendar-dialog{width:min(430px,100%);padding:20px}
+.calendar-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:15px}
+.calendar-head h2{font-size:20px;margin:0}
+.calendar-selects{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:13px}
+.calendar-selects .custom-select{min-width:0}.calendar-selects .custom-select-trigger{min-height:42px;padding:9px 11px;border-radius:11px;background:#11141f;border-color:var(--line);font-size:13px}.calendar-selects .custom-select-trigger:hover{background:#201d31;border-color:#6f60a7}.calendar-selects .custom-select-menu{max-height:210px;background:#191c2a}.calendar-selects .custom-select-option{font-size:13px;padding:9px 10px}
+.calendar-weekdays,.calendar-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}
+.calendar-weekday{text-align:center;color:var(--muted);font-size:11px;padding:6px 0}
+.calendar-day{border:1px solid transparent;background:#11141f;color:var(--text);border-radius:10px;min-width:0;aspect-ratio:1;cursor:pointer;font:inherit;font-size:13px;transition:background .15s,border-color .15s}
+.calendar-day:hover{background:#29243f;border-color:#6f60a7;transform:none;filter:none}
+.calendar-day.chosen{background:#6d5ac4;border-color:#9b8cff;color:#fff;font-weight:800}
+.calendar-day.today{border-color:#675a99;color:#c5baff}
+.calendar-day:disabled{visibility:hidden}
+.calendar-actions{display:flex;justify-content:space-between;gap:8px;margin-top:15px}
+.calendar-actions .btn{flex:1}
+@media(max-width:420px){.calendar-dialog{padding:16px}.calendar-weekdays,.calendar-grid{gap:3px}.calendar-day{border-radius:8px}}
+
+
+
+/* GLOBAL SCROLLBAR STANDARD: every scrollable area uses the NEXORA look and the same interaction states */
+.custom-select-menu{scrollbar-width:thin!important;scrollbar-color:#8876e8 #111522!important;scrollbar-gutter:stable}
+.custom-select-menu::-webkit-scrollbar{width:10px!important;height:10px!important}
+.custom-select-menu::-webkit-scrollbar-track{background:#111522!important;border:1px solid #292e40!important;border-radius:999px!important;margin:0!important}
+.custom-select-menu::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#a99aff,#7160cf)!important;border:2px solid #111522!important;border-radius:999px!important;box-shadow:none!important}
+.custom-select-menu::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#b9adff,#66e3d0)!important}
+.custom-select-menu::-webkit-scrollbar-button{display:block!important;width:10px!important;height:10px!important;-webkit-appearance:none!important;appearance:none!important;background-color:#19182a!important;background-repeat:no-repeat!important;background-position:center!important;background-size:8px 8px!important;box-shadow:inset 0 0 0 1px #34314d!important;border:1px solid #34314d!important}
+.custom-select-menu::-webkit-scrollbar-button:vertical:decrement{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 8L6 4l4 4' fill='none' stroke='%23b9adff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")!important;border-radius:5px 5px 2px 2px!important}
+.custom-select-menu::-webkit-scrollbar-button:vertical:increment{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' fill='none' stroke='%2366e3d0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")!important;border-radius:2px 2px 5px 5px!important}
+.custom-select-menu::-webkit-scrollbar-corner{background:#111522!important}
+
+/* Edit dialog scrollbar: same purple track/thumb glow and arrow hover/press/focus behavior as the page scrollbar */
+.edit-custom-scrollbar{width:14px!important;opacity:.9;transition:opacity .2s}
+.edit-custom-scrollbar:hover{opacity:1}
+.edit-custom-scrollbar .edit-scroll-arrow{transition:background-color .16s ease,border-color .16s ease,color .16s ease,box-shadow .16s ease!important;outline:none!important;filter:none!important;transform:none!important}
+.edit-custom-scrollbar .edit-scroll-arrow:hover{background:#2b2442!important;border-color:#554975!important;color:#a99be9!important;box-shadow:0 1px 3px rgba(0,0,0,.16)!important}
+.edit-custom-scrollbar .edit-scroll-arrow:last-child:hover{color:#78b891!important}
+.edit-custom-scrollbar .edit-scroll-arrow:active{background:#393052!important;border-color:#7868a5!important;color:#d0c8ff!important;outline:1px solid #71659e!important;outline-offset:1px!important;box-shadow:inset 0 1px 1px rgba(255,255,255,.08),0 1px 2px rgba(0,0,0,.12)!important}
+.edit-custom-scrollbar .edit-scroll-arrow:last-child:active{color:#a4dfb8!important;outline-color:#5e9474!important}
+.edit-custom-scrollbar .edit-scroll-arrow:focus:not(:hover):not(:active),.edit-custom-scrollbar .edit-scroll-arrow:focus-visible:not(:hover):not(:active){background:#211c34!important;border-color:#3d355b!important;color:#8876d2!important;outline:none!important;box-shadow:0 1px 2px rgba(0,0,0,.12)!important}
+.edit-custom-scrollbar .edit-scroll-arrow:last-child:focus:not(:hover):not(:active),.edit-custom-scrollbar .edit-scroll-arrow:last-child:focus-visible:not(:hover):not(:active){color:#548e70!important}
+.edit-custom-scrollbar-track{background:#111522ef!important;border-color:#302b49!important;cursor:default!important;transition:background .16s,border-color .16s,box-shadow .16s!important}
+.edit-custom-scrollbar-track:hover{background:#19152a!important;border-color:#7663d6!important;box-shadow:0 0 5px #9b8cff24!important}
+.edit-custom-scrollbar-thumb{background:linear-gradient(180deg,#b9adff,#806ce0 55%,#66e3d0)!important;box-shadow:0 0 10px #9b8cff45!important;cursor:default!important;transition:box-shadow .16s,filter .16s!important}
+.edit-custom-scrollbar-thumb:hover{box-shadow:0 0 14px #b9adff90!important;filter:brightness(1.08)!important}
+.edit-custom-scrollbar-thumb:active{box-shadow:0 0 18px #b9adffb0,inset 0 0 5px #fff5!important;filter:brightness(1.16)!important}
+
+
+/* Remove focus/active effect from the scrollbar thumb only; preserve arrow interactions. */
+.edit-custom-scrollbar .edit-custom-scrollbar-thumb:active,
+.edit-custom-scrollbar-thumb:active{
+  box-shadow:0 0 10px #9b8cff45!important;
+  filter:none!important;
+}
+.edit-custom-scrollbar-track:hover{background:#111522ef!important;border-color:#302b49!important;box-shadow:none!important}
+
+
+/* Keep the edit-dialog scrollbar thumb glow visible while pressed/dragged, matching the note scrollbar. */
+.edit-custom-scrollbar .edit-custom-scrollbar-thumb:active,
+.edit-custom-scrollbar-thumb:active{
+  box-shadow:0 0 14px #b9adff90!important;
+  filter:brightness(1.08)!important;
+}
+</style></head>
+<body><div class="wrap">
+<header><div class="brand"><div class="logo">✦</div><div><h1>Daily Tasks</h1><p>PLAN · DO · DONE</p></div></div><div class="date" id="today"></div></header>
+<section class="hero"><div><div class="eyebrow">مساحتك للتركيز والإنجاز</div><h2>خطوة صغيرة كل يوم،<br>فرق كبير مع الوقت.</h2><p>رتّب مهامك، ابدأ مؤقتك، وخلّي إنجازك يتكلم.</p><div class="progress-track"><div class="progress-bar" id="overallBar"></div></div><p id="progressText" style="margin-top:8px">ابدأ بإضافة أول مهمة ليك.</p></div><div class="stats"><div class="stat"><span>كل المهام</span><strong id="totalStat">0</strong></div><div class="stat"><span>المكتمل</span><strong id="doneStat">0</strong></div><div class="stat"><span>المتبقي</span><strong id="leftStat">0</strong></div><div class="stat"><span>وقت التركيز</span><strong id="focusStat">0 د</strong></div></div></section>
+<div class="layout"><aside class="panel"><h3>＋ مهمة جديدة</h3><p class="sub">اكتب المطلوب وحدد وقتك المتوقع.</p><form id="taskForm"><div class="field"><label for="taskName">اسم المهمة</label><input id="taskName" maxlength="120" placeholder="اكتب اسم المهمة هنا..." required></div>
+<div class="field"><label>الوقت المتوقع</label><div class="duration"><div><input id="hours" type="text" inputmode="numeric" pattern="[0-9]*" aria-label="الساعات" placeholder="ساعات"></div><div><input id="minutes" type="text" inputmode="numeric" pattern="[0-9]*" aria-label="الدقائق" placeholder="دقائق"></div><div><input id="seconds" type="text" inputmode="numeric" pattern="[0-9]*" aria-label="الثواني" placeholder="ثواني"></div></div></div>
+<div class="field"><label for="category">التصنيف</label><select id="category"><option>مذاكرة</option><option>شغل</option><option>شخصي</option><option>رياضة</option><option value="other">أخرى</option></select></div><div class="field" id="customCategoryWrap" style="display:none"><label for="customCategory">اكتب التصنيف الآخر</label><input id="customCategory" maxlength="50" placeholder="اكتب نوع المهمة أو التصنيف..."></div>
+<div class="field"><label for="priority">الأولوية</label><select id="priority"><option value="high">عالية</option><option value="medium" selected>متوسطة</option><option value="low">منخفضة</option></select></div><button class="btn full" type="submit">إضافة المهمة ←</button></form></aside>
+<main><section class="day-planner" id="dayPlanner" aria-label="اختيار يوم المهام"></section><section id="focusArea"></section><section class="panel"><div class="toolbar"><div class="toolbar-heading"><div><h3>قائمة المهام</h3><p class="sub" style="margin:3px 0 0">كل إنجاز بيقرّبك من هدفك.</p></div><button type="button" class="btn red small" id="deleteAllDayTasks" title="حذف كل مهام اليوم المحدد">حذف كل المهام</button></div><div class="filters"><button class="filter active" data-filter="all">الكل</button><button class="filter" data-filter="todo">المتبقي</button><button class="filter" data-filter="done">المكتمل</button></div></div><div class="task-list" id="taskList"></div></section></main></div><footer>DAILY TASKS · بياناتك محفوظة محليًا على جهازك</footer></div>
+<div class="modal" id="finishModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="dialog"><div class="dialog-icon" id="modalIcon">⏰</div><h2 id="modalTitle">الوقت خلص!</h2><p id="modalMessage">خلصت المهمة ولا محتاج وقت إضافي؟</p><div id="extensionArea" style="display:none"><label for="extraHours" style="display:block;font-size:12px;margin:10px 0 7px">الوقت الإضافي</label><div class="duration"><input id="extraHours" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="ساعات" aria-label="ساعات إضافية"><input id="extraMinutes" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="دقائق" aria-label="دقائق إضافية"><input id="extraSeconds" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="ثواني" aria-label="ثواني إضافية"></div></div><div class="dialog-actions" id="modalButtons"></div></div></div>
+<div class="modal" id="deleteModal" role="dialog" aria-modal="true" aria-labelledby="deleteTitle"><div class="dialog"><div class="dialog-icon">🗑️</div><h2 id="deleteTitle">حذف المهمة؟</h2><p id="deleteMessage">هل أنت متأكد إنك عاوز تحذف المهمة دي؟ مش هتقدر ترجعها بعد الحذف.</p><div class="dialog-actions"><button class="btn red" id="confirmDelete">أيوه، احذف المهمة</button><button class="btn secondary" id="cancelDelete">لا، خلي المهمة</button></div></div></div>
+<div class="modal" id="calendarModal" role="dialog" aria-modal="true" aria-labelledby="calendarTitle"><div class="dialog calendar-dialog"><div class="calendar-head"><h2 id="calendarTitle">📅 اختار التاريخ</h2><button type="button" class="day-nav-btn" id="calendarClose" aria-label="إغلاق التقويم">✕</button></div><div class="calendar-selects"><select id="calendarMonth" aria-label="الشهر"></select><select id="calendarYear" aria-label="السنة"></select></div><div class="calendar-weekdays"><div class="calendar-weekday">السبت</div><div class="calendar-weekday">الأحد</div><div class="calendar-weekday">الاثنين</div><div class="calendar-weekday">الثلاثاء</div><div class="calendar-weekday">الأربعاء</div><div class="calendar-weekday">الخميس</div><div class="calendar-weekday">الجمعة</div></div><div class="calendar-grid" id="calendarGrid"></div><div class="calendar-actions"><button type="button" class="btn secondary" id="calendarToday">النهارده</button><button type="button" class="btn" id="calendarConfirm">تأكيد التاريخ</button></div></div></div><div class="modal" id="noteModal" role="dialog" aria-modal="true" aria-labelledby="noteTitle"><div class="dialog"><div class="dialog-icon">📝</div><h2 id="noteTitle">ملاحظة المهمة</h2><p id="noteTaskTitle" style="margin-bottom:12px"></p><label for="taskNote" style="display:block;font-size:12px;color:#c5c9d8;margin-bottom:7px">اكتب تفاصيل أو تذكير للمهمة</label><div class="note-editor"><textarea id="taskNote" class="note-textarea" maxlength="2000" placeholder="اكتب ملاحظتك هنا..."></textarea><div class="note-custom-scrollbar" id="noteCustomScrollbar" aria-label="شريط تمرير الملاحظة"><button class="edit-scroll-arrow" id="noteScrollUp" type="button" aria-label="تحرك لأعلى">▲</button><div class="edit-custom-scrollbar-track" id="noteScrollbarTrack"><div class="edit-custom-scrollbar-thumb" id="noteScrollbarThumb"></div></div><button class="edit-scroll-arrow" id="noteScrollDown" type="button" aria-label="تحرك لأسفل">▼</button></div></div><div class="dialog-actions"><button class="btn" id="saveTaskNote">حفظ الملاحظة</button><button class="btn secondary" id="cancelTaskNote">إلغاء</button></div></div></div><div class="modal" id="editTaskModal" role="dialog" aria-modal="true" aria-labelledby="editTaskTitle"><div class="dialog edit-dialog"><div class="edit-custom-scrollbar" id="editCustomScrollbar" aria-label="شريط تمرير التعديل"><button class="edit-scroll-arrow" id="editScrollUp" type="button" aria-label="تحرك لأعلى">▲</button><div class="edit-custom-scrollbar-track" id="editCustomScrollbarTrack"><div class="edit-custom-scrollbar-thumb" id="editCustomScrollbarThumb"></div></div><button class="edit-scroll-arrow" id="editScrollDown" type="button" aria-label="تحرك لأسفل">▼</button></div><div class="dialog-icon">✏️</div><h2 id="editTaskTitle">تعديل المهمة</h2><p>غيّر بيانات المهمة واحفظ التعديلات.</p><form id="editTaskForm"><div class="edit-grid"><div class="field"><label for="editName">اسم المهمة</label><input id="editName" maxlength="120" required></div><div class="field"><label for="editDateDisplay">تاريخ المهمة</label><div class="custom-date-picker"><input id="editDateDisplay" type="text" readonly required placeholder="اختار تاريخ المهمة" aria-haspopup="dialog" aria-label="اختيار تاريخ المهمة"><button type="button" id="openEditDateCalendar" aria-label="فتح التقويم">▦</button></div><input id="editDate" type="hidden"></div><div class="field edit-duration-field"><label>الوقت المتوقع</label><div class="duration"><input id="editHours" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="ساعات" aria-label="ساعات المهمة"><input id="editMinutes" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="دقائق" aria-label="دقائق المهمة"><input id="editSeconds" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="ثواني" aria-label="ثواني المهمة"></div></div><div class="field"><label for="editCategory">التصنيف</label><select id="editCategory"><option>مذاكرة</option><option>شغل</option><option>شخصي</option><option>رياضة</option><option value="other">أخرى</option></select></div><div class="field" id="editCustomCategoryWrap" style="display:none"><label for="editCustomCategory">اكتب التصنيف الآخر</label><input id="editCustomCategory" maxlength="50" placeholder="اكتب نوع المهمة أو التصنيف..."></div><div class="field"><label for="editPriority">الأولوية</label><select id="editPriority"><option value="high">عالية</option><option value="medium">متوسطة</option><option value="low">منخفضة</option></select></div></div><div class="dialog-actions"><button class="btn" type="submit">حفظ التعديلات</button><button class="btn secondary" type="button" id="cancelEditTask">إلغاء</button></div></form></div></div><div class="toast" id="toast"></div>
+<script>
+(()=>{'use strict';const STORE='nexora_focus_planner_v3';const RESET_MARKER='nexora_focus_planner_reset_all_days_daily_tasks_final_20261013_v2';try{if(!localStorage.getItem(RESET_MARKER)){localStorage.removeItem(STORE);localStorage.removeItem('nexora_focus_planner_clean_start_20261013');localStorage.setItem(RESET_MARKER,'done')}}catch(e){}const $=id=>document.getElementById(id);let tasks=[],filter='all',modalTaskId=null,noteTaskId=null,alertedId=null,deleteTaskId=null,deleteAllDayKey=null,editTaskId=null,toastTimer=null;let selectedDateKey=localDateKey(new Date());const priorities={high:{label:'أولوية عالية',color:'var(--red)'},medium:{label:'أولوية متوسطة',color:'var(--orange)'},low:{label:'أولوية منخفضة',color:'var(--cyan)'}};
+function localDateKey(date){const d=date instanceof Date?date:new Date(date);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}function dateFromKey(key){const a=key.split('-').map(Number);return new Date(a[0],a[1]-1,a[2])}function shiftDateKey(key,amount){const d=dateFromKey(key);d.setDate(d.getDate()+amount);return localDateKey(d)}function prettyDate(key,opts={weekday:'long',day:'numeric',month:'long'}){return dateFromKey(key).toLocaleDateString('ar-EG',opts)}function isTodayKey(key){return key===localDateKey(new Date())}function tasksForSelectedDay(){return tasks.filter(t=>t.dayKey===selectedDateKey)}function renderDayPlanner(){const host=$('dayPlanner');if(!host)return;const d=dateFromKey(selectedDateKey);const days=Array.from({length:7},(_,i)=>shiftDateKey(selectedDateKey,i-3));const countFor=key=>tasks.filter(t=>t.dayKey===key).length;host.innerHTML=`<div class="day-planner-head"><div class="day-planner-title"><span style="font-size:22px">🗓️</span><div><h3>خطة الأيام</h3><div class="day-planner-date">${prettyDate(selectedDateKey)} · ${isTodayKey(selectedDateKey)?'النهارده':selectedDateKey===shiftDateKey(localDateKey(new Date()),-1)?'امبارح':selectedDateKey===shiftDateKey(localDateKey(new Date()),1)?'بكرة':'اليوم المحدد'}</div></div><button type="button" class="calendar-shortcut" id="openCalendar" aria-label="فتح التقويم"><span aria-hidden="true">▦</span> التقويم</button></div><div class="day-planner-actions"><button type="button" class="day-nav-btn" data-day-shift="-1" aria-label="اليوم السابق">→ السابق</button><button type="button" class="day-nav-btn" data-day-today="true">النهارده</button><button type="button" class="day-nav-btn" data-day-shift="1" aria-label="اليوم التالي">التالي ←</button></div></div><div class="day-strip">${days.map(key=>{const dt=dateFromKey(key),selected=key===selectedDateKey,today=isTodayKey(key),count=countFor(key);return `<button type="button" class="day-chip ${selected?'selected':''} ${today?'is-today':''}" data-day-key="${key}" aria-pressed="${selected}"><span class="day-name">${dt.toLocaleDateString('ar-EG',{weekday:'short'})}</span><span class="day-number">${dt.getDate()}</span><span class="day-count">${count?count+' مهام':'0 مهام'}</span></button>`}).join('')}</div><div class="day-year-label">${d.getFullYear()}</div><div class="day-target-hint">المهام الجديدة هتتسجل ليوم ${prettyDate(selectedDateKey)}.</div>`;}let calendarViewDate=dateFromKey(selectedDateKey);let calendarPendingKey=selectedDateKey;let calendarTarget='planner';function formatEditDate(key){return key?dateFromKey(key).toLocaleDateString('ar-EG',{day:'numeric',month:'long',year:'numeric'}):''}const calendarMonths=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];function setupCalendar(){const month=$('calendarMonth'),year=$('calendarYear');month.innerHTML=calendarMonths.map((m,i)=>`<option value="${i}">${m} ${i+1}</option>`).join('');const now=new Date().getFullYear();year.innerHTML=Array.from({length:201},(_,i)=>now-100+i).map(y=>`<option value="${y}">${y}</option>`).join('');month.addEventListener('change',()=>{calendarViewDate.setMonth(Number(month.value),1);renderCalendar()});year.addEventListener('change',()=>{calendarViewDate.setFullYear(Number(year.value),calendarViewDate.getMonth(),1);renderCalendar()});}function renderCalendar(){const month=$('calendarMonth'),year=$('calendarYear');month.value=String(calendarViewDate.getMonth());year.value=String(calendarViewDate.getFullYear());const y=calendarViewDate.getFullYear(),m=calendarViewDate.getMonth(),first=new Date(y,m,1),daysInMonth=new Date(y,m+1,0).getDate(),offset=(first.getDay()+1)%7,todayKey=localDateKey(new Date());let html='';for(let i=0;i<offset;i++)html+='<button type="button" class="calendar-day" disabled tabindex="-1" aria-hidden="true"></button>';for(let day=1;day<=daysInMonth;day++){const key=localDateKey(new Date(y,m,day)),classes=['calendar-day'];if(key===calendarPendingKey)classes.push('chosen');if(key===todayKey)classes.push('today');html+=`<button type="button" class="${classes.join(' ')}" data-calendar-date="${key}" aria-pressed="${key===calendarPendingKey}">${day}</button>`;}$('calendarGrid').innerHTML=html;}function openCalendar(){calendarTarget='planner';calendarPendingKey=selectedDateKey;calendarViewDate=dateFromKey(selectedDateKey);$('calendarTitle').textContent='📅 اختار التاريخ';renderCalendar();$('calendarModal').classList.add('show')}function openEditDateCalendar(){calendarTarget='edit';calendarPendingKey=$('editDate').value||selectedDateKey||localDateKey(new Date());calendarViewDate=dateFromKey(calendarPendingKey);$('calendarTitle').textContent='📅 تاريخ المهمة';renderCalendar();$('calendarModal').classList.add('show')}function closeCalendar(){$('calendarModal').classList.remove('show')}function applyCalendarDate(){if(calendarPendingKey){if(calendarTarget==='edit'){$('editDate').value=calendarPendingKey;$('editDateDisplay').value=formatEditDate(calendarPendingKey)}else{selectedDateKey=calendarPendingKey;render()}}closeCalendar()}function save(){try{localStorage.setItem(STORE,JSON.stringify(tasks))}catch(e){showToast('تعذّر الحفظ. تأكد من مساحة المتصفح المتاحة.')}}function load(){try{const d=JSON.parse(localStorage.getItem(STORE)||'[]');tasks=Array.isArray(d)?d.filter(t=>t&&typeof t.id==='string'&&typeof t.title==='string'):[];let migrated=false;for(const t of tasks){if(!t.dayKey){t.dayKey=localDateKey(new Date());migrated=true}}if(migrated)save()}catch(e){tasks=[]}}function uid(){return crypto&&crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2)}function fmt(ms){const s=Math.max(0,Math.ceil(ms/1000)),h=Math.floor(s/3600),m=Math.floor(s%3600/60),sec=s%60;return[h,m,sec].map(n=>String(n).padStart(2,'0')).join(':')}function durationLabel(ms){const n=Math.round(ms/1000),h=Math.floor(n/3600),m=Math.floor(n%3600/60),s=n%60;let a=[];if(h)a.push(h+' س');if(m)a.push(m+' د');if(s||!a.length)a.push(s+' ث');return a.join(' ')}function getCurrent(){return tasks.find(t=>['running','paused','overtime'].includes(t.status))}function showToast(msg){$('toast').textContent=msg;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),2800)}function notify(title,body){if(window.AndroidBridge&&typeof AndroidBridge.showNotification==='function'){try{AndroidBridge.showNotification(title,body);return}catch(e){}}if('Notification'in window&&Notification.permission==='granted'){try{new Notification(title,{body})}catch(e){}}}function requestNotifications(){if(window.AndroidBridge)return;if('Notification'in window&&Notification.permission==='default')Notification.requestPermission().catch(()=>{})}function scheduleNativeTimer(t){if(window.AndroidBridge&&t&&t.deadlineAt){try{AndroidBridge.scheduleTimer(t.title,Math.max(1000,t.deadlineAt-Date.now()))}catch(e){}}}function cancelNativeTimer(){if(window.AndroidBridge){try{AndroidBridge.cancelTimer()}catch(e){}}}function readNum(id){const raw=$(id).value.trim();return raw===''?0:Number(raw)}function validTime(ids){const vals=ids.map(readNum);return vals.every(v=>Number.isInteger(v)&&v>=0&&v<=9999)&&vals[1]<60&&vals[2]<60?vals:null}
+function addTask(e){e.preventDefault();const title=$('taskName').value.trim(),v=validTime(['hours','minutes','seconds']);if(!title)return;if(!v){showToast('اكتب وقتًا صحيحًا؛ الدقائق والثواني أقل من 60.');return}const ms=(v[0]*3600+v[1]*60+v[2])*1000;if(ms<1000){showToast('حدد وقتًا لا يقل عن ثانية واحدة.');return}let category=$('category').value;if(category==='other'){category=$('customCategory').value.trim();if(!category){showToast('اكتب التصنيف الآخر الأول.');$('customCategory').focus();return}}tasks.unshift({id:uid(),title,category,priority:$('priority').value,dayKey:selectedDateKey,durationMs:ms,remainingMs:ms,status:'todo',createdAt:Date.now(),completedAt:null,deadlineAt:null,spentMs:0});save();render();$('taskName').value='';$('taskName').focus();showToast('اتضافت المهمة بنجاح ✨')}
+function startTask(id){const t=tasks.find(x=>x.id===id);if(!t||t.status==='done')return;const cur=getCurrent();if(cur&&cur.id!==id){showToast('كمّل أو أوقف المهمة الحالية الأول.');return}if(t.status==='paused'){resumeTask(id);return}t.status='running';t.deadlineAt=Date.now()+Math.max(1000,t.remainingMs||t.durationMs);alertedId=null;save();render();scheduleNativeTimer(t);requestNotifications();showToast('يلا ركّز، المؤقت بدأ! 🚀')}
+function pauseTask(id){const t=tasks.find(x=>x.id===id);if(!t||t.status!=='running')return;t.remainingMs=Math.max(0,t.deadlineAt-Date.now());t.spentMs=(t.spentMs||0)+Math.max(0,t.durationMs-t.remainingMs);t.status='paused';t.deadlineAt=null;cancelNativeTimer();save();render();showToast('المؤقت اتوقف مؤقتًا.')}function deferTask(id){const t=tasks.find(x=>x.id===id);if(!t||!['running','paused'].includes(t.status))return;if(t.status==='running'){t.remainingMs=Math.max(0,t.deadlineAt-Date.now());t.spentMs=(t.spentMs||0)+Math.max(0,t.durationMs-t.remainingMs)}t.status='deferred';t.deadlineAt=null;cancelNativeTimer();save();render();showToast('المهمة اتقفلت والوقت المتبقي محفوظ. تقدر تستكملها من قائمة المهام.')}function resumeTask(id){const t=tasks.find(x=>x.id===id);if(!t||t.status!=='paused')return;const cur=getCurrent();if(cur&&cur.id!==id){showToast('في مهمة تانية شغالة بالفعل.');return}t.status='running';t.deadlineAt=Date.now()+Math.max(1000,t.remainingMs);alertedId=null;save();render();scheduleNativeTimer(t);requestNotifications()}
+function completeTask(id){const t=tasks.find(x=>x.id===id);if(!t)return;if(t.status==='running')t.spentMs=(t.spentMs||0)+Math.max(0,t.durationMs-Math.max(0,t.deadlineAt-Date.now()));t.status='done';t.completedAt=Date.now();t.deadlineAt=null;t.remainingMs=0;cancelNativeTimer();if(modalTaskId===id)closeFinish();alertedId=null;save();render();showToast('عاش! المهمة اتنقلت للمكتملات 🎉');notify('Daily Tasks — أحسنت!',`أنجزت: ${t.title}`)}function cancelTaskTimer(id){const t=tasks.find(x=>x.id===id);if(!t||t.status==='done')return;t.status='todo';t.deadlineAt=null;t.remainingMs=t.durationMs;t.spentMs=0;cancelNativeTimer();t.completedAt=null;if(modalTaskId===id)closeFinish();alertedId=null;save();render();showToast('اتلغى المؤقت، والمهمة لسه موجودة تقدر تبدأها تاني.')}
+function askDelete(id){const t=tasks.find(x=>x.id===id);if(!t)return;deleteAllDayKey=null;deleteTaskId=id;$('deleteTitle').textContent='حذف المهمة؟';$('confirmDelete').textContent='أيوه، احذف المهمة';$('cancelDelete').textContent='لا، خلي المهمة';$('deleteMessage').textContent=`متأكد إنك عاوز تحذف «${t.title}»؟ مش هتقدر ترجعها بعد الحذف.`;$('deleteModal').classList.add('show')}function askDeleteAllDay(){const dayTasks=tasks.filter(t=>t.dayKey===selectedDateKey);if(!dayTasks.length){showToast('مفيش مهام في اليوم ده عشان تتحذف.');return}deleteTaskId=null;deleteAllDayKey=selectedDateKey;$('deleteTitle').textContent='حذف كل مهام اليوم؟';$('confirmDelete').textContent='احذف المهام';$('cancelDelete').textContent='لا، خلي المهام';$('deleteMessage').textContent=`متأكد إنك عاوز تحذف كل الـ ${dayTasks.length} مهام ليوم ${prettyDate(selectedDateKey)}؟ الحذف نهائي ومش هتقدر ترجعهم.`;$('deleteModal').classList.add('show')}function confirmDelete(){if(deleteAllDayKey){const key=deleteAllDayKey,ids=new Set(tasks.filter(t=>t.dayKey===key).map(t=>t.id));if(ids.has(modalTaskId))closeFinish();tasks=tasks.filter(t=>t.dayKey!==key);deleteAllDayKey=null;deleteTaskId=null;$('deleteModal').classList.remove('show');alertedId=null;save();render();showToast('تم حذف كل مهام اليوم المحدد.');return}if(!deleteTaskId)return;if(modalTaskId===deleteTaskId)closeFinish();tasks=tasks.filter(t=>t.id!==deleteTaskId);deleteTaskId=null;$('deleteModal').classList.remove('show');save();render();showToast('تم حذف المهمة.')}function cancelDelete(){$('deleteModal').classList.remove('show');deleteTaskId=null;deleteAllDayKey=null;$('deleteTitle').textContent='حذف المهمة؟';$('confirmDelete').textContent='أيوه، احذف المهمة';$('cancelDelete').textContent='لا، خلي المهمة'}
+function openFinish(t){if(!t||t.status==='done')return;modalTaskId=t.id;$('modalIcon').textContent='⏰';$('modalTitle').textContent='الوقت خلص!';$('modalMessage').textContent=`خلصت «${t.title}» ولا لسه محتاج وقت؟`;$('extensionArea').style.display='none';$('modalButtons').innerHTML='<button class="btn green" id="finishYes">✅ أيوه، خلصت</button><button class="btn secondary" id="finishNo">＋ لسه، محتاج وقت زيادة</button>';$('finishModal').classList.add('show');$('finishYes').onclick=()=>completeTask(t.id);$('finishNo').onclick=showExtensionForm}function showExtensionForm(){$('modalIcon').textContent='⏳';$('modalTitle').textContent='كمّل براحتك';$('modalMessage').textContent='حدد وقتًا إضافيًا واقعيًا للمهمة، والمؤقت هيكمل معاك.';$('extensionArea').style.display='block';$('extraHours').value='';$('extraMinutes').value='';$('extraSeconds').value='';$('modalButtons').innerHTML='<button class="btn" id="addTime">ابدأ الوقت الإضافي ←</button><button class="btn secondary" id="backFinish">رجوع</button>';$('addTime').onclick=addExtraTime;$('backFinish').onclick=()=>{const t=tasks.find(x=>x.id===modalTaskId);if(t)openFinish(t)}}function addExtraTime(){const t=tasks.find(x=>x.id===modalTaskId);if(!t){closeFinish();return}const v=validTime(['extraHours','extraMinutes','extraSeconds']);if(!v){showToast('اكتب وقتًا صحيحًا؛ الدقائق والثواني أقل من 60.');return}const ms=(v[0]*3600+v[1]*60+v[2])*1000;if(ms<1000){showToast('حدد ثانية واحدة على الأقل.');return}t.durationMs=ms;t.remainingMs=ms;t.deadlineAt=Date.now()+ms;t.status='running';alertedId=null;closeFinish();save();render();scheduleNativeTimer(t);showToast(`اتضاف ${durationLabel(ms)}. شد حيلك!`);requestNotifications()}function closeFinish(){$('finishModal').classList.remove('show');modalTaskId=null}
+function checkTimers(){const now=Date.now();for(const t of tasks){if(t.status==='running'&&t.deadlineAt&&now>=t.deadlineAt){t.status='overtime';t.remainingMs=0;t.deadlineAt=null;save();if(alertedId!==t.id){alertedId=t.id;notify('Daily Tasks — انتهى الوقت',`خلص وقت: ${t.title}`);openFinish(t)}}}renderTimer()}
+function renderTimer(){const t=getCurrent(),clock=$('clock');if(!t||!clock)return;if(t.status==='paused'){clock.textContent=fmt(t.remainingMs);$('clockLabel').textContent='المؤقت متوقف مؤقتًا'}else if(t.status==='overtime'){clock.textContent='+00:00:00';$('clockLabel').textContent='انتهى الوقت — مستني قرارك'}else{const left=Math.max(0,t.deadlineAt-Date.now());clock.textContent=fmt(left);$('clockLabel').textContent=left<=60000?'آخر دقيقة — كمّل!':'الوقت المتبقي';$('focusBar').style.width=Math.min(100,t.durationMs?(t.durationMs-left)/t.durationMs*100:0)+'%'}}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}function renderFocus(){const t=getCurrent();if(!t){$('focusArea').innerHTML='';return}const paused=t.status==='paused',over=t.status==='overtime';$('focusArea').innerHTML=`<div class="focus-card"><div class="focus-head"><h3>${esc(t.title)}</h3><span class="live">● ${over?'انتهى الوقت':paused?'متوقف مؤقتًا':'المؤقت شغال'}</span></div><div class="clock" id="clock">00:00:00</div><div class="clock-label" id="clockLabel">الوقت المتبقي</div><div class="focus-track"><div id="focusBar"></div></div><div class="focus-actions">${t.status==='running'?'<button class="btn pause-action" id="pauseBtn">Ⅱ إيقاف مؤقت</button>':!over?'<button class="btn" id="resumeBtn">▶ استكمال</button>':''}<button class="btn defer-action" id="deferTaskBtn">استكمال لاحقًا</button><button class="btn green" id="completeBtn">✓ خلصت المهمة</button><button class="btn red" id="cancelTimerBtn">إلغاء المهمة</button>${over?'<button class="btn secondary" id="extraBtn">＋ وقت إضافي</button>':''}</div></div>`;if($('pauseBtn'))$('pauseBtn').onclick=()=>pauseTask(t.id);if($('resumeBtn'))$('resumeBtn').onclick=()=>resumeTask(t.id);$('deferTaskBtn').onclick=()=>deferTask(t.id);$('completeBtn').onclick=()=>completeTask(t.id);$('cancelTimerBtn').onclick=()=>cancelTaskTimer(t.id);if($('extraBtn'))$('extraBtn').onclick=()=>{modalTaskId=t.id;showExtensionForm();$('finishModal').classList.add('show')};renderTimer()}
+function openTaskNote(id){const t=tasks.find(x=>x.id===id);if(!t)return;noteTaskId=id;$('noteTaskTitle').textContent=t.title;$('taskNote').value=t.note||'';$('noteModal').classList.add('show');setTimeout(()=>$('taskNote').focus(),0)}function closeTaskNote(){$('noteModal').classList.remove('show');noteTaskId=null}function saveTaskNote(){const t=tasks.find(x=>x.id===noteTaskId);if(!t){closeTaskNote();return}t.note=$('taskNote').value.trim();save();closeTaskNote();renderTasks();showToast(t.note?'اتحفظت ملاحظة المهمة 📝':'اتمسحت ملاحظة المهمة.') }function deleteTaskNote(){const t=tasks.find(x=>x.id===noteTaskId);if(!t){closeTaskNote();return}if(!t.note){$('taskNote').value='';showToast('مفيش ملاحظة محفوظة للحذف.');return}t.note='';save();closeTaskNote();renderTasks();showToast('اتحذفت ملاحظة المهمة 🗑️')}function deleteTaskNoteById(id){const t=tasks.find(x=>x.id===id);if(!t||!t.note)return;t.note='';save();renderTasks();showToast('اتحذفت ملاحظة المهمة 🗑️')}
+function openEditTask(id){const t=tasks.find(x=>x.id===id);if(!t)return;editTaskId=id;$('editName').value=t.title||'';$('editDate').value=t.dayKey||selectedDateKey;$('editDateDisplay').value=formatEditDate($('editDate').value);const total=Math.max(1000,Number(t.durationMs)||1000),secs=Math.round(total/1000);$('editHours').value=Math.floor(secs/3600)||'';$('editMinutes').value=Math.floor(secs%3600/60)||'';$('editSeconds').value=secs%60||'';const knownCategories=['مذاكرة','شغل','شخصي','رياضة'];const existingCategory=t.category||'أخرى';const isKnown=knownCategories.includes(existingCategory);$('editCategory').value=isKnown?existingCategory:'other';$('editCustomCategory').value=isKnown?'':existingCategory;$('editCustomCategoryWrap').style.display=isKnown?'none':'block';$('editCustomCategory').required=!isKnown;$('editPriority').value=t.priority||'medium';$('editCategory').dispatchEvent(new Event('change',{bubbles:true}));$('editPriority').dispatchEvent(new Event('change',{bubbles:true}));$('editTaskModal').classList.add('show');setTimeout(()=>$('editName').focus(),0)}function closeEditTask(){$('editTaskModal').classList.remove('show');editTaskId=null}function saveEditedTask(e){e.preventDefault();const t=tasks.find(x=>x.id===editTaskId);if(!t){closeEditTask();return}const title=$('editName').value.trim(),category=$('editCategory').value==='other'?$('editCustomCategory').value.trim():$('editCategory').value,dayKey=$('editDate').value,v=validTime(['editHours','editMinutes','editSeconds']);if(!title||!category||!dayKey){showToast('كمّل بيانات المهمة الأول.');return}if(!v){showToast('اكتب وقتًا صحيحًا؛ الدقائق والثواني أقل من 60.');return}const ms=(v[0]*3600+v[1]*60+v[2])*1000;if(ms<1000){showToast('حدد وقتًا لا يقل عن ثانية واحدة.');return}const oldDay=t.dayKey,wasRunning=t.status==='running';t.title=title;t.category=category;t.priority=$('editPriority').value;t.dayKey=dayKey;t.durationMs=ms;if(t.status==='running'){t.remainingMs=ms;t.deadlineAt=Date.now()+ms;t.spentMs=0;alertedId=null;scheduleNativeTimer(t)}else if(t.status==='paused'||t.status==='overtime'){t.remainingMs=ms;t.deadlineAt=null;t.spentMs=0;if(t.status==='overtime')t.status='paused'}else if(t.status!=='done'){t.remainingMs=ms;t.deadlineAt=null}save();closeEditTask();if(oldDay!==dayKey&&selectedDateKey===oldDay&&dayKey!==oldDay){/* keep the current day selected */}render();showToast('اتحفظت تعديلات المهمة ✨')}
+function renderTasks(){const list=$('taskList'),dayTasks=tasksForSelectedDay(),shown=dayTasks.filter(t=>filter==='all'||(filter==='done'?t.status==='done':t.status!=='done'));if(!shown.length){list.innerHTML=`<div class="empty"><div class="symbol">✧</div><strong>${filter==='done'?'لسه مفيش مهام مكتملة في اليوم ده':'مفيش مهام لليوم ده لسه'}</strong><div style="font-size:12px;margin-top:6px">أضف مهمة جديدة لليوم المحدد وابدأ أول خطوة.</div></div>`;return}list.innerHTML=shown.map(t=>{const p=priorities[t.priority]||priorities.medium,done=t.status==='done',cur=getCurrent(),blocked=cur&&cur.id!==t.id;let action=done?'<button class="btn secondary small" disabled>✓ مكتملة</button>':t.status==='running'?`<button class="btn secondary small" data-action="pause" data-id="${t.id}">Ⅱ إيقاف</button>`:['paused','deferred'].includes(t.status)?`<button class="btn small" data-action="start" data-id="${t.id}" ${blocked?'disabled':''}>▶ استكمال</button>`:t.status==='overtime'?`<button class="btn small" data-action="extend" data-id="${t.id}">＋ وقت إضافي</button>`:`<button class="btn small" data-action="start" data-id="${t.id}" ${blocked?'disabled':''}>▶ ابدأ المهمة</button>`;const label=done?'مكتملة':t.status==='running'?'جارية':t.status==='paused'?'متوقفة مؤقتًا':t.status==='deferred'?'استكمال لاحقًا':t.status==='overtime'?'بانتظارك':'لم تبدأ';return `<article class="task ${done?'done':''} ${t.status==='running'?'running':''}"><div class="task-top"><span class="dot" style="background:${done?'var(--green)':p.color}"></span><div class="task-title-line"><h4>${esc(t.title)}</h4></div></div><div class="task-info-row"><div class="task-actions"><button type="button" class="task-edit-btn" data-action="edit" data-id="${t.id}" title="تعديل المهمة" aria-label="تعديل المهمة ${esc(t.title)}">تعديل</button>${action}${!done?`<button class="btn green small" data-action="complete" data-id="${t.id}">✓ خلصت</button>`:''}<button class="btn red small" data-action="delete" data-id="${t.id}">حذف</button></div><div class="meta"><span class="pill">${esc(t.category||'أخرى')}</span><span class="pill ${t.priority}">${p.label}</span><span class="pill">${label}</span><span class="pill">الوقت: ${durationLabel(t.durationMs||1000)}</span></div></div><div class="task-note-row"><button class="btn secondary small task-note-button" data-action="note" data-id="${t.id}">${t.note?'تعديل الملاحظة':'ملاحظة'}</button>${t.note?`<div class="task-note-field"><button type="button" class="btn red small note-preview-delete" data-action="delete-note" data-id="${t.id}" title="حذف الملاحظة" aria-label="حذف ملاحظة ${esc(t.title)}">🗑</button><span class="note-preview-text">${esc(t.note)}</span></div>`:'<div style="flex:1;min-width:0"></div>'}</div></article>`}).join('')}
+function renderStats(){const dayTasks=tasksForSelectedDay(),total=dayTasks.length,done=dayTasks.filter(t=>t.status==='done').length,pct=total?Math.round(done/total*100):0,focus=dayTasks.reduce((s,t)=>s+(t.spentMs||0)+(t.status==='running'?Math.max(0,(t.durationMs||0)-Math.max(0,(t.deadlineAt||Date.now())-Date.now())):0),0);$('totalStat').textContent=total;$('doneStat').textContent=done;$('leftStat').textContent=total-done;$('focusStat').textContent=Math.floor(focus/60000)+' د';$('overallBar').style.width=pct+'%';$('progressText').textContent=total?`أنجزت ${pct}% من مهامك — كمل، أنت قدّها.`:'ابدأ بإضافة أول مهمة ليك.'}function render(){$('today').textContent=new Date().toLocaleDateString('ar-EG',{weekday:'long',day:'numeric',month:'long'});renderDayPlanner();renderFocus();renderTasks();renderStats()}
+
+function enhanceSelect(select){
+  if(!select || select.dataset.enhanced==='true')return;
+  select.dataset.enhanced='true';
+  select.classList.add('native-select-hidden');
+  const wrap=document.createElement('div');wrap.className='custom-select';
+  const trigger=document.createElement('button');trigger.type='button';trigger.className='custom-select-trigger';trigger.setAttribute('aria-haspopup','listbox');trigger.setAttribute('aria-expanded','false');
+  const label=document.createElement('span');label.className='custom-select-label';
+  const arrow=document.createElement('span');arrow.className='custom-select-arrow';arrow.textContent='▾';arrow.setAttribute('aria-hidden','true');
+  trigger.append(label,arrow);
+  const menu=document.createElement('div');menu.className='custom-select-menu';menu.setAttribute('role','listbox');
+  function sync(){
+    const selected=select.options[select.selectedIndex];label.textContent=selected?selected.textContent:'';
+    [...menu.children].forEach((b,i)=>b.setAttribute('aria-selected',String(select.options[i].value===select.value)));
+  }
+  [...select.options].forEach((option,index)=>{
+    const item=document.createElement('button');item.type='button';item.className='custom-select-option';item.setAttribute('role','option');item.textContent=option.textContent;
+    item.addEventListener('click',()=>{select.selectedIndex=index;select.dispatchEvent(new Event('change',{bubbles:true}));sync();wrap.classList.remove('open');trigger.setAttribute('aria-expanded','false');trigger.focus()});
+    menu.appendChild(item);
+  });
+  trigger.addEventListener('click',()=>{const open=!wrap.classList.contains('open');document.querySelectorAll('.custom-select.open').forEach(el=>{el.classList.remove('open');el.querySelector('.custom-select-trigger').setAttribute('aria-expanded','false')});if(open){wrap.classList.add('open');trigger.setAttribute('aria-expanded','true')}});
+  trigger.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='Enter'||e.key===' '){e.preventDefault();wrap.classList.add('open');trigger.setAttribute('aria-expanded','true');const selected=menu.querySelector('[aria-selected="true"]');(selected||menu.firstElementChild)?.focus()}});
+  menu.addEventListener('keydown',e=>{const items=[...menu.querySelectorAll('button')],i=items.indexOf(document.activeElement);if(e.key==='ArrowDown'){e.preventDefault();items[(i+1)%items.length]?.focus()}else if(e.key==='ArrowUp'){e.preventDefault();items[(i-1+items.length)%items.length]?.focus()}else if(e.key==='Escape'){wrap.classList.remove('open');trigger.setAttribute('aria-expanded','false');trigger.focus()}});
+  select.parentNode.insertBefore(wrap,select);wrap.append(trigger,menu);wrap.appendChild(select);sync();
+  select.addEventListener('change',sync);
+}
+document.querySelectorAll('#category,#priority,#editCategory,#editPriority').forEach(enhanceSelect);
+document.addEventListener('click',e=>{if(!e.target.closest('.custom-select'))document.querySelectorAll('.custom-select.open').forEach(el=>{el.classList.remove('open');el.querySelector('.custom-select-trigger').setAttribute('aria-expanded','false')})});
+
+function enhanceSelect(select){
+  if(!select || select.dataset.enhanced==='true')return;
+  select.dataset.enhanced='true';
+  select.classList.add('native-select-hidden');
+  const wrap=document.createElement('div');wrap.className='custom-select';
+  const trigger=document.createElement('button');trigger.type='button';trigger.className='custom-select-trigger';trigger.setAttribute('aria-haspopup','listbox');trigger.setAttribute('aria-expanded','false');
+  const label=document.createElement('span');label.className='custom-select-label';
+  const arrow=document.createElement('span');arrow.className='custom-select-arrow';arrow.textContent='▾';arrow.setAttribute('aria-hidden','true');
+  trigger.append(label,arrow);
+  const menu=document.createElement('div');menu.className='custom-select-menu';menu.setAttribute('role','listbox');
+  function sync(){
+    const selected=select.options[select.selectedIndex];label.textContent=selected?selected.textContent:'';
+    [...menu.children].forEach((b,i)=>b.setAttribute('aria-selected',String(select.options[i].value===select.value)));
+  }
+  [...select.options].forEach((option,index)=>{
+    const item=document.createElement('button');item.type='button';item.className='custom-select-option';item.setAttribute('role','option');item.textContent=option.textContent;
+    item.addEventListener('click',()=>{select.selectedIndex=index;select.dispatchEvent(new Event('change',{bubbles:true}));sync();wrap.classList.remove('open');trigger.setAttribute('aria-expanded','false');});
+    menu.appendChild(item);
+  });
+  trigger.addEventListener('click',()=>{const open=!wrap.classList.contains('open');document.querySelectorAll('.custom-select.open').forEach(el=>{el.classList.remove('open');el.querySelector('.custom-select-trigger').setAttribute('aria-expanded','false')});if(open){wrap.classList.add('open');trigger.setAttribute('aria-expanded','true')}});
+  trigger.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='Enter'||e.key===' '){e.preventDefault();wrap.classList.add('open');trigger.setAttribute('aria-expanded','true');const selected=menu.querySelector('[aria-selected="true"]');(selected||menu.firstElementChild)?.focus()}});
+  menu.addEventListener('keydown',e=>{const items=[...menu.querySelectorAll('button')],i=items.indexOf(document.activeElement);if(e.key==='ArrowDown'){e.preventDefault();items[(i+1)%items.length]?.focus()}else if(e.key==='ArrowUp'){e.preventDefault();items[(i-1+items.length)%items.length]?.focus()}else if(e.key==='Escape'){wrap.classList.remove('open');trigger.setAttribute('aria-expanded','false');}});
+  select.parentNode.insertBefore(wrap,select);wrap.append(trigger,menu);wrap.appendChild(select);sync();
+  select.addEventListener('change',sync);
+}
+document.querySelectorAll('#category,#priority,#editCategory,#editPriority').forEach(enhanceSelect);
+document.addEventListener('click',e=>{if(!e.target.closest('.custom-select'))document.querySelectorAll('.custom-select.open').forEach(el=>{el.classList.remove('open');el.querySelector('.custom-select-trigger').setAttribute('aria-expanded','false')})});
+
+
+// Note textarea scrollbar mirrors the existing NEXORA custom scrollbar behavior.
+(()=>{
+ const box=document.getElementById('taskNote'),bar=document.getElementById('noteCustomScrollbar'),track=document.getElementById('noteScrollbarTrack'),thumb=document.getElementById('noteScrollbarThumb'),modal=document.getElementById('noteModal');
+ const up=document.getElementById('noteScrollUp'),down=document.getElementById('noteScrollDown');
+ if(!box||!bar||!track||!thumb||!modal)return;
+ let dragging=false,startY=0,startScroll=0;
+ const maxScroll=()=>Math.max(0,box.scrollHeight-box.clientHeight);
+ function update(){const max=maxScroll(),trackH=track.clientHeight,ratio=box.clientHeight/Math.max(box.scrollHeight,box.clientHeight),h=Math.max(28,Math.min(trackH,trackH*ratio));thumb.style.height=h+'px';const travel=Math.max(0,trackH-thumb.offsetHeight);thumb.style.transform=`translateY(${max?box.scrollTop/max*travel:0}px)`;bar.style.display=modal.classList.contains('show')&&max>2?'flex':'none';}
+ function scrollByNote(direction){box.scrollBy({top:direction*Math.max(50,box.clientHeight*.65),behavior:'smooth'});}
+ up.addEventListener('click',()=>scrollByNote(-1));down.addEventListener('click',()=>scrollByNote(1));
+ track.addEventListener('pointerdown',e=>{if(e.target===thumb)return;const r=track.getBoundingClientRect(),h=thumb.getBoundingClientRect().height,travel=Math.max(1,r.height-h);box.scrollTo({top:Math.max(0,Math.min(1,(e.clientY-r.top-h/2)/travel))*maxScroll(),behavior:'smooth'});});
+ thumb.addEventListener('pointerdown',e=>{dragging=true;startY=e.clientY;startScroll=box.scrollTop;thumb.setPointerCapture(e.pointerId);bar.classList.add('dragging');e.preventDefault();});
+ thumb.addEventListener('pointermove',e=>{if(!dragging)return;const travel=Math.max(1,track.clientHeight-thumb.offsetHeight);box.scrollTop=Math.max(0,Math.min(maxScroll(),startScroll+(e.clientY-startY)/travel*maxScroll()));});
+ function stop(){dragging=false;bar.classList.remove('dragging');}thumb.addEventListener('pointerup',stop);thumb.addEventListener('pointercancel',stop);thumb.addEventListener('lostpointercapture',stop);
+ box.addEventListener('scroll',update,{passive:true});window.addEventListener('resize',update);modal.addEventListener('click',()=>requestAnimationFrame(update));box.addEventListener('input',()=>requestAnimationFrame(update));
+ new MutationObserver(()=>requestAnimationFrame(update)).observe(box,{attributes:true,childList:true,characterData:true});update();
+})();
+
+// Edit-task scrollbar mirrors the main NEXORA scrollbar, mapped to the dialog's own scroll range.
+(()=>{
+ const box=document.querySelector('.edit-dialog'),bar=document.getElementById('editCustomScrollbar'),track=document.getElementById('editCustomScrollbarTrack'),thumb=document.getElementById('editCustomScrollbarThumb'),modal=document.getElementById('editTaskModal');
+ const up=document.getElementById('editScrollUp'),down=document.getElementById('editScrollDown');
+ if(!box||!bar||!track||!thumb||!modal)return;
+ let dragging=false,startY=0,startScroll=0;
+ const maxScroll=()=>Math.max(0,box.scrollHeight-box.clientHeight);
+ function update(){
+  const rect=box.getBoundingClientRect();
+  bar.style.left=(rect.left+7)+'px';
+  bar.style.top=(rect.top+12)+'px';
+  bar.style.height=Math.max(0,rect.height-24)+'px';
+  const max=maxScroll(),trackH=track.clientHeight;
+  const ratio=box.clientHeight/Math.max(box.scrollHeight,box.clientHeight);
+  const h=Math.max(28,Math.min(trackH,trackH*ratio));
+  thumb.style.height=h+'px';
+  const travel=Math.max(0,trackH-thumb.offsetHeight);
+  thumb.style.transform=`translateY(${max?box.scrollTop/max*travel:0}px)`;
+  bar.style.display=modal.classList.contains('show')&&max>2?'flex':'none';
+ }
+ function scrollByDialog(direction){box.scrollBy({top:direction*Math.max(100,box.clientHeight*.72),behavior:'smooth'});}
+ up.addEventListener('click',()=>scrollByDialog(-1));down.addEventListener('click',()=>scrollByDialog(1));
+ track.addEventListener('pointerdown',e=>{if(e.target===thumb)return;const r=track.getBoundingClientRect(),h=thumb.getBoundingClientRect().height,travel=Math.max(1,r.height-h);box.scrollTo({top:Math.max(0,Math.min(1,(e.clientY-r.top-h/2)/travel))*maxScroll(),behavior:'smooth'});});
+ thumb.addEventListener('pointerdown',e=>{dragging=true;startY=e.clientY;startScroll=box.scrollTop;thumb.setPointerCapture(e.pointerId);e.preventDefault();});
+ thumb.addEventListener('pointermove',e=>{if(!dragging)return;const travel=Math.max(1,track.clientHeight-thumb.offsetHeight);box.scrollTop=Math.max(0,Math.min(maxScroll(),startScroll+(e.clientY-startY)/travel*maxScroll()));});
+ function stop(){dragging=false;}thumb.addEventListener('pointerup',stop);thumb.addEventListener('pointercancel',stop);thumb.addEventListener('lostpointercapture',stop);
+ box.addEventListener('scroll',update,{passive:true});window.addEventListener('resize',update);window.addEventListener('scroll',update,{passive:true});
+ new MutationObserver(()=>requestAnimationFrame(update)).observe(box,{childList:true,subtree:true,attributes:true,characterData:true});
+ modal.addEventListener('click',()=>requestAnimationFrame(update));document.getElementById('editTaskForm').addEventListener('input',()=>requestAnimationFrame(update));
+ update();
+})();setupCalendar();document.querySelectorAll('#calendarMonth,#calendarYear').forEach(enhanceSelect);$('dayPlanner').addEventListener('click',e=>{const chip=e.target.closest('[data-day-key]'),shift=e.target.closest('[data-day-shift]'),today=e.target.closest('[data-day-today]');if(e.target.closest('#openCalendar')){openCalendar();return}if(chip){selectedDateKey=chip.dataset.dayKey;render();return}if(shift){selectedDateKey=shiftDateKey(selectedDateKey,Number(shift.dataset.dayShift));render();return}if(today){selectedDateKey=localDateKey(new Date());render()}});$('calendarGrid').addEventListener('click',e=>{const day=e.target.closest('[data-calendar-date]');if(day){calendarPendingKey=day.dataset.calendarDate;renderCalendar()}});$('calendarConfirm').addEventListener('click',applyCalendarDate);$('calendarToday').addEventListener('click',()=>{calendarPendingKey=localDateKey(new Date());calendarViewDate=dateFromKey(calendarPendingKey);renderCalendar()});$('calendarClose').addEventListener('click',closeCalendar);$('calendarModal').addEventListener('click',e=>{if(e.target===$('calendarModal'))closeCalendar()});$('category').addEventListener('change',()=>{const other=$('category').value==='other';$('customCategoryWrap').style.display=other?'block':'none';$('customCategory').required=other;if(other)$('customCategory').focus()});$('editCategory').addEventListener('change',()=>{const other=$('editCategory').value==='other';$('editCustomCategoryWrap').style.display=other?'block':'none';$('editCustomCategory').required=other;if(other)$('editCustomCategory').focus()});$('taskForm').addEventListener('submit',addTask);document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(x=>x.classList.toggle('active',x===b));renderTasks()}));$('taskList').addEventListener('click',e=>{const b=e.target.closest('[data-action]');if(!b)return;const id=b.dataset.id;if(b.dataset.action==='edit')openEditTask(id);if(b.dataset.action==='note')openTaskNote(id);if(b.dataset.action==='delete-note')deleteTaskNoteById(id);if(b.dataset.action==='start')startTask(id);if(b.dataset.action==='pause')pauseTask(id);if(b.dataset.action==='complete')completeTask(id);if(b.dataset.action==='delete')askDelete(id);if(b.dataset.action==='extend'){modalTaskId=id;showExtensionForm();$('finishModal').classList.add('show')}});$('confirmDelete').onclick=confirmDelete;$('cancelDelete').onclick=cancelDelete;$('deleteAllDayTasks').onclick=askDeleteAllDay;$('saveTaskNote').onclick=saveTaskNote;$('editTaskForm').addEventListener('submit',saveEditedTask);$('editDateDisplay').addEventListener('click',openEditDateCalendar);$('openEditDateCalendar').addEventListener('click',openEditDateCalendar);$('cancelEditTask').onclick=closeEditTask;$('editTaskModal').addEventListener('click',e=>{if(e.target===$('editTaskModal'))closeEditTask()});$('cancelTaskNote').onclick=closeTaskNote;$('noteModal').addEventListener('click',e=>{if(e.target===$('noteModal'))closeTaskNote()});$('deleteModal').addEventListener('click',e=>{if(e.target===$('deleteModal'))cancelDelete()});$('finishModal').addEventListener('click',e=>{if(e.target===$('finishModal'))showToast('اختار تخلص المهمة أو تضيف وقتًا.');});document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('deleteModal').classList.contains('show'))cancelDelete();if($('calendarModal').classList.contains('show'))closeCalendar();if($('noteModal').classList.contains('show'))closeTaskNote();if($('editTaskModal').classList.contains('show'))closeEditTask();}});document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkTimers()});window.addEventListener('storage',e=>{if(e.key===STORE){load();render()}});load();render();const overdue=tasks.find(t=>t.status==='overtime');if(overdue)openFinish(overdue);checkTimers();setInterval(checkTimers,250)})();
+</script>
+<div class="nexora-scrollbar" id="nexoraScrollbar" aria-label="شريط تمرير الصفحة">
+  <button class="nexora-scroll-arrow" id="nexoraScrollUp" type="button" aria-label="تحرك لأعلى">▲</button>
+  <div class="nexora-scroll-track" id="nexoraScrollTrack"><div class="nexora-scroll-thumb" id="nexoraScrollThumb"></div></div>
+  <button class="nexora-scroll-arrow" id="nexoraScrollDown" type="button" aria-label="تحرك لأسفل">▼</button>
+</div>
+<script>
+(()=>{
+ const bar=document.getElementById('nexoraScrollbar'),track=document.getElementById('nexoraScrollTrack'),thumb=document.getElementById('nexoraScrollThumb');
+ const up=document.getElementById('nexoraScrollUp'),down=document.getElementById('nexoraScrollDown');
+ if(!bar||!track||!thumb)return;
+ let dragging=false,startY=0,startScroll=0;
+ const maxScroll=()=>Math.max(0,document.documentElement.scrollHeight-window.innerHeight);
+ function update(){const max=maxScroll(),trackH=track.clientHeight;const ratio=window.innerHeight/Math.max(document.documentElement.scrollHeight,window.innerHeight);const h=Math.max(28,Math.min(trackH,trackH*ratio));thumb.style.height=h+'px';const travel=Math.max(0,trackH-h);thumb.style.transform=`translateY(${max?window.scrollY/max*travel:0}px)`;bar.style.display=max>2?'flex':'none';}
+ function scrollByPage(direction){window.scrollBy({top:direction*Math.max(120,window.innerHeight*.72),behavior:'smooth'});}
+ up.addEventListener('click',()=>scrollByPage(-1));down.addEventListener('click',()=>scrollByPage(1));
+ track.addEventListener('pointerdown',e=>{if(e.target===thumb)return;const r=track.getBoundingClientRect();const h=thumb.getBoundingClientRect().height;const travel=Math.max(1,r.height-h);window.scrollTo({top:Math.max(0,Math.min(1,(e.clientY-r.top-h/2)/travel))*maxScroll(),behavior:'smooth'});});
+ thumb.addEventListener('pointerdown',e=>{dragging=true;startY=e.clientY;startScroll=window.scrollY;bar.classList.add('dragging');thumb.setPointerCapture(e.pointerId);e.preventDefault();});
+ thumb.addEventListener('pointermove',e=>{if(!dragging)return;const travel=Math.max(1,track.clientHeight-thumb.offsetHeight);window.scrollTo(0,startScroll+(e.clientY-startY)/travel*maxScroll());});
+ function stop(){dragging=false;bar.classList.remove('dragging');}thumb.addEventListener('pointerup',stop);thumb.addEventListener('pointercancel',stop);
+ window.addEventListener('scroll',update,{passive:true});window.addEventListener('resize',update);new MutationObserver(update).observe(document.body,{childList:true,subtree:true,attributes:true});update();
+})();
+</script>
+
+<style id="calendar-day-hover-neutralized">
+/* Calendar dates stay visually stable on hover; selection highlight remains intact. */
+.calendar-day:hover:not(.chosen) {
+  background: #11141f !important;
+  border-color: #6f60a7 !important;
+  color: var(--text) !important;
+  box-shadow: none !important;
+  outline: none !important;
+  transform: none !important;
+  filter: none !important;
+}
+.calendar-day:focus:not(.chosen),
+.calendar-day:focus-visible:not(.chosen) {
+  background: #11141f !important;
+  border-color: transparent !important;
+  color: var(--text) !important;
+  box-shadow: none !important;
+  outline: none !important;
+  transform: none !important;
+  filter: none !important;
+}
+.calendar-day.chosen,
+.calendar-day.chosen:hover,
+.calendar-day.chosen:focus,
+.calendar-day.chosen:focus-visible {
+  background: #6d5ac4 !important;
+  border-color: #9b8cff !important;
+  color: #fff !important;
+  box-shadow: none !important;
+  outline: none !important;
+  transform: none !important;
+  filter: none !important;
+}
+</style>
+</body></html>
+
+
+
