@@ -35,6 +35,8 @@ public class MainActivity extends Activity {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
         }
         webView = new WebView(this);
+        webView.setVerticalScrollBarEnabled(false);
+        webView.setHorizontalScrollBarEnabled(false);
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setDomStorageEnabled(true);
@@ -65,6 +67,7 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(context, TimerNotificationReceiver.class);
         PendingIntent pending = PendingIntent.getBroadcast(context, TIMER_NOTIFICATION_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         if (manager != null) manager.cancel(pending);
+        TimerProgressService.stop(context);
     }
 
     @Override public void onBackPressed() {
@@ -84,8 +87,9 @@ public class MainActivity extends Activity {
             TimerNotificationReceiver.show(context, title, body, TIMER_NOTIFICATION_ID);
         }
 
-        @JavascriptInterface public void scheduleTimer(String title, long millis) {
+        @JavascriptInterface public void scheduleTimer(String title, long millis, long elapsedMillis) {
             cancelScheduledTimer(context);
+            TimerProgressService.start(context, title, millis, elapsedMillis);
             Intent intent = new Intent(context, TimerNotificationReceiver.class);
             intent.putExtra("title", "Daily Tasks — انتهى الوقت");
             intent.putExtra("body", "خلص وقت: " + title);
@@ -97,3 +101,10 @@ public class MainActivity extends Activity {
         @JavascriptInterface public void cancelTimer() { cancelScheduledTimer(context); }
     }
 }
+
+
+
+
+
+
+

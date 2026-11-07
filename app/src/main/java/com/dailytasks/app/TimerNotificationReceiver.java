@@ -12,6 +12,7 @@ import android.os.Build;
 public class TimerNotificationReceiver extends BroadcastReceiver {
     private static final String CHANNEL_ID = "daily_tasks_channel";
     @Override public void onReceive(Context context, Intent intent) {
+        MainActivity.cancelScheduledTimer(context);
         String title = intent.getStringExtra("title");
         String body = intent.getStringExtra("body");
         show(context, title == null ? "Daily Tasks — انتهى الوقت" : title, body == null ? "خلص وقت المهمة" : body, 4101);
@@ -36,3 +37,5 @@ public class TimerNotificationReceiver extends BroadcastReceiver {
         manager.notify(id, notification);
     }
 }
+
+
