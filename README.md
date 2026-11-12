@@ -15,16 +15,16 @@ A clean and easy-to-use **Daily Tasks** and **To-Do List** Android application d
 ## 🚀 How to Install & Run (طريقة التثبيت والتشغيل)
 
 ### Option 1: Install APK directly (للمستخدمين)
-1. Go to the **[Releases](https://github.com/ahmedsayed6143-dev/Daily-Tasks-Android/releases)** section on the right.
+1. Go to the **[Releases](https://github.com/ahmedsayed6143-dev/Daily-Tasks-Android/releases/tag/v1.0.0)** section on the right.
 2. Download the latest `.apk` file to your Android device.
 3. Open the file and allow installation from unknown sources if prompted.
 
 ### Option 2: Build from Source Code (للمطورين)
-1. Clone the repository:
-   ```bash
-   git clone https://github.com
-   ```
-2. Open the project folder in **Android Studio** and let Gradle sync the files.
+1. Clone the repository in your terminal (CMD):
+```bash
+git clone https://github.com/ahmedsayed6143-dev/Daily-Tasks-Android.git
+```
+2. Open the downloaded folder in **Android Studio** and let Gradle sync the files.
 3. Build and run the app on an emulator or physical Android device.
 
 ## 🔗 Other Versions
