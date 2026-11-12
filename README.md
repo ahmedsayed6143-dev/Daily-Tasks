@@ -28,7 +28,7 @@ A clean and easy-to-use **Daily Tasks** and **To-Do List** Android application d
 3. Build and run the app on an emulator or physical Android device.
 
 ## 🔗 Other Versions
-- 💻 **[Daily Tasks for Windows](https://github.com)**
+- 💻 **[Daily Tasks for Windows](https://github.com/ahmedsayed6143-dev/Daily-Tasks-Windows)**
 
 ## 🤝 Contributing
 Contributions, issues, and feature requests are welcome! Feel free to give this project a ⭐ if you found it helpful.
